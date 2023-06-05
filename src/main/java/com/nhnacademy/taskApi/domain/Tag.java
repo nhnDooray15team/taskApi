@@ -1,41 +1,64 @@
 package com.nhnacademy.taskApi.domain;
 
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+//
+//@Entity
+//@Table(name = "tags")
+//@Getter
+//@NoArgsConstructor
+//@AllArgsConstructor
+//public class Tag {
+//    @EmbeddedId
+//    private TagPk tag;
+//
+//    @ManyToOne
+//    @MapsId("projectId")
+//    @JoinColumn(name = "project_id")
+//    private Project project;
+//
+//    @OneToMany(mappedBy = "tag")
+//    private List<Task> tasks;
+//
+//    @Embeddable
+//    @AllArgsConstructor
+//    @NoArgsConstructor
+//    @EqualsAndHashCode
+//    @Getter
+//    public static class TagPk implements Serializable{
+//
+//        @Setter
+//        @Column(name = "tag_name")
+//        private String tagName;
+//
+//        private int projectId;
+//    }
+//}
 
 @Entity
 @Table(name = "tags")
+@Setter
 @Getter
-public class Tag {
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+public class Tag{
+    @Id
+    @Column(name = "tag_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer tagId;
 
+    @Column(name = "tag_name")
+    private String tagName;
 
-    @ManyToOne
-    @MapsId("projectId")
+    @ManyToOne()
+    @JoinColumn(name = "project_id")
     private Project project;
 
-    @EmbeddedId
-    private TagId tag;
-
     @OneToMany(mappedBy = "tag")
-    private List<Task> tasks;
-
-    @Embeddable
-    @AllArgsConstructor
-    @NoArgsConstructor
-    @EqualsAndHashCode
-    public class TagId implements Serializable{
-
-        @Column(name = "tag_name")
-        private String tag_name;
-
-        @Column(name = "project_id")
-        private int projectId;
-    }
+    private List<TaskTag> tag;
 }
