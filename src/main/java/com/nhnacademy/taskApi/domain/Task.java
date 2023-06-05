@@ -1,7 +1,9 @@
 package com.nhnacademy.taskApi.domain;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,35 +12,36 @@ import java.util.List;
 @Entity
 @Table(name = "tasks")
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Task {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "task_id")
-    private int taskId;
+    private Integer taskId;
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project project;
 
     @Column(name = "task_name")
     private String taskName;
-
-    @Column(name = "end_date")
-    private LocalDateTime endDate;
 
     private String content;
 
     @Column(name = "register_date")
     private LocalDateTime registerDate;
-
-
-    @ManyToOne
-    @JoinColumn(name = "project_id")
-    private Project project;
+    @Column(name = "end_date")
+    private LocalDateTime endDate;
 
     @ManyToOne
+    @JoinColumn(name = "mile_stone_id")
     private Milestones milestones;
 
     @OneToMany(mappedBy = "task")
     private List<Comment> comments;
 
     @OneToMany(mappedBy = "task")
-    private List<Tag> tags;
+    private List<TaskTag> tags;
 
 }

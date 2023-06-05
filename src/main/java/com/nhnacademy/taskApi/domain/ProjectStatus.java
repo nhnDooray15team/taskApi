@@ -24,6 +24,4 @@ public class ProjectStatus {
 
     @OneToMany
     private List<Project> projects;
-
-
 }
