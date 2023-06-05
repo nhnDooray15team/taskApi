@@ -13,13 +13,16 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class Milestones {
-
-    @EmbeddedId
-    private MilestonesId milestones;
+    @Id
+    @Column(name = "mile_stone_id")
+    private Integer mileStoneId;
 
     @ManyToOne
-    @MapsId("projectId")
+    @JoinColumn(name = "project_id")
     private Project project;
+
+    @Column(name = "mile_stone_name")
+    private String mileStoneName;
     @Column(name = "start_date")
     private Date startDate;
 
@@ -27,21 +30,7 @@ public class Milestones {
     private Date endDate;
 
     @OneToMany
-    @JoinColumn(name = "task_id")
     private List<Task> tasks;
-
-    @Embeddable
-    @AllArgsConstructor
-    @NoArgsConstructor
-    @EqualsAndHashCode
-    public class MilestonesId implements Serializable {
-
-        @Column(name = "mile_stone_name")
-        private String mileStoneName;
-
-        @Column(name = "project_id")
-        private int projectId;
-    }
 
 
 }
