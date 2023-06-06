@@ -2,8 +2,6 @@ package com.nhnacademy.taskApi.domain;
 
 
 import lombok.*;
-import org.hibernate.cfg.PkDrivenByDefaultMapsIdSecondPass;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
