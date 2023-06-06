@@ -23,8 +23,11 @@ public class ProjectStatus {
 
     @OneToMany
     private List<Project> projects;
+<<<<<<< HEAD
 
     public void setStatusName(String statusName) {
         this.statusName = statusName;
     }
+=======
+>>>>>>> 5186feb918042d5ac02872a4a6b44b432c46ab67
 }

@@ -12,20 +12,32 @@ import java.util.Date;
 @Table(name = "milestones")
 @NoArgsConstructor
 public class Milestones {
+<<<<<<< HEAD
 
     @EmbeddedId
     private Pk pk;
+=======
+    @Id
+    @Column(name = "mile_stone_id")
+    private Integer mileStoneId;
+>>>>>>> 5186feb918042d5ac02872a4a6b44b432c46ab67
 
     @ManyToOne
-    @MapsId("projectId")
+    @JoinColumn(name = "project_id")
     private Project project;
 
+<<<<<<< HEAD
+=======
+    @Column(name = "mile_stone_name")
+    private String mileStoneName;
+>>>>>>> 5186feb918042d5ac02872a4a6b44b432c46ab67
     @Column(name = "start_date")
     private Date startDate;
 
     @Column(name = "end_date")
     private Date endDate;
 
+<<<<<<< HEAD
     @Getter
     @Embeddable
     @AllArgsConstructor
@@ -39,4 +51,10 @@ public class Milestones {
         @Column(name = "project_id")
         private int projectId;
     }
+=======
+    @OneToMany
+    private List<Task> tasks;
+
+
+>>>>>>> 5186feb918042d5ac02872a4a6b44b432c46ab67
 }
