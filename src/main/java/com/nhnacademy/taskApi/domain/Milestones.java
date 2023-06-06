@@ -6,35 +6,32 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
+@Getter
 @Entity
 @Table(name = "milestones")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter
+@NoArgsConstructor
 public class Milestones {
 
     @EmbeddedId
-    private MilestonesId milestones;
+    private Pk pk;
 
     @ManyToOne
     @MapsId("projectId")
     private Project project;
+
     @Column(name = "start_date")
     private Date startDate;
 
     @Column(name = "end_date")
     private Date endDate;
 
-    @OneToMany
-    @JoinColumn(name = "task_id")
-    private List<Task> tasks;
-
+    @Getter
     @Embeddable
     @AllArgsConstructor
     @NoArgsConstructor
     @EqualsAndHashCode
-    public class MilestonesId implements Serializable {
+    static class Pk implements Serializable {
 
         @Column(name = "mile_stone_name")
         private String mileStoneName;
@@ -42,6 +39,4 @@ public class Milestones {
         @Column(name = "project_id")
         private int projectId;
     }
-
-
 }

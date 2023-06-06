@@ -15,27 +15,29 @@ import java.util.List;
 @Getter
 public class Tag {
 
+    @EmbeddedId
+    private Pk pk;
 
     @ManyToOne
     @MapsId("projectId")
     private Project project;
 
-    @EmbeddedId
-    private TagId tag;
-
     @OneToMany(mappedBy = "tag")
-    private List<Task> tasks;
+    private List<TaskTag> tasks;
+
 
     @Embeddable
     @AllArgsConstructor
     @NoArgsConstructor
     @EqualsAndHashCode
-    public class TagId implements Serializable{
+    static class Pk implements Serializable {
 
         @Column(name = "tag_name")
-        private String tag_name;
+        private String tagName;
 
         @Column(name = "project_id")
         private int projectId;
+
+
     }
 }

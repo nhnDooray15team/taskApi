@@ -27,18 +27,19 @@ public class Task {
     @Column(name = "register_date")
     private LocalDateTime registerDate;
 
-
     @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
 
-    @ManyToOne
-    private Milestones milestones;
+//    @ManyToOne
+//    @JoinColumn(name = "mile_stone_name")
+//    @JoinColumn(name = "project_id")
+//    private Milestones milestones;
 
     @OneToMany(mappedBy = "task")
     private List<Comment> comments;
 
     @OneToMany(mappedBy = "task")
-    private List<Tag> tags;
+    private List<TaskTag> tags;
 
 }

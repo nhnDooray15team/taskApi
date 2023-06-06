@@ -7,29 +7,32 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "authorities")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@Table(name = "authorities")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Authority {
 
     @EmbeddedId
-    private AuthorityId authority;
+    private Pk pk;
+
     @ManyToOne
     @MapsId("projectId")
     private Project project;
 
     private String role;
 
+    @Getter
     @Embeddable
     @AllArgsConstructor
     @NoArgsConstructor
     @EqualsAndHashCode
-    public class AuthorityId implements Serializable{
-
+    public static class Pk implements Serializable {
         @Column(name = "user_id")
-        private int userId;
+        private Long userId;
+
         @Column(name = "project_id")
-        private int projectId;
+        private Long projectId;
 
     }
 }

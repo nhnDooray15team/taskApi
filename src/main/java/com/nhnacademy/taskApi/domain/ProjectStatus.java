@@ -10,8 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "project_status")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter
+@NoArgsConstructor
 public class ProjectStatus {
 
     @Id
@@ -25,5 +24,7 @@ public class ProjectStatus {
     @OneToMany
     private List<Project> projects;
 
-
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
+    }
 }

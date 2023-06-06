@@ -1,0 +1,20 @@
+###
+POST /projects/1/authorities
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "userId" : 1,
+  "projectId" : 1,
+  "role" : "멤버"
+}
+
+###
+DELETE /projects/1/authorities/1
+Host: localhost:8080
+Content-Type: application/json
+
+###
+GET /1/authorities
+Host: localhost:8080
+Content-Type: application/json

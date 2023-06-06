@@ -2,6 +2,7 @@ package com.nhnacademy.taskApi.domain;
 
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,9 +10,10 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Getter
 @Table(name = "projects")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter
+@AllArgsConstructor
 public class Project {
     @Id
     @Column(name = "project_id")
@@ -31,16 +33,13 @@ public class Project {
     @OneToMany(mappedBy = "project")
     private List<Authority> authorities;
 
-
     @OneToMany(mappedBy = "project")
     private List<Tag> tags;
 
     @OneToMany(mappedBy = "project")
     private List<Milestones> milestones;
 
-
     @OneToMany(mappedBy = "project")
     private List<Task> tasks;
-
 
 }
