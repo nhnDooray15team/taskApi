@@ -10,7 +10,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "projects")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class Project {
     @Id
@@ -43,4 +42,10 @@ public class Project {
     private List<Task> tasks;
 
 
+    public Project(int projectId, String projectName, String projectDescription, ProjectStatus statusId) {
+        this.projectId = projectId;
+        this.projectName = projectName;
+        this.projectDescription = projectDescription;
+        this.statusId = statusId;
+    }
 }
