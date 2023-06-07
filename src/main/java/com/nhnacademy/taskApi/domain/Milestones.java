@@ -4,7 +4,6 @@ package com.nhnacademy.taskApi.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -13,9 +12,12 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 public class Milestones {
+
+    // generatedvalue를 추가해줌
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "mile_stone_id")
-    private Integer mileStoneId;
+    private Long mileStoneId;
 
     @Setter
     @ManyToOne
@@ -37,7 +39,6 @@ public class Milestones {
 
     @OneToMany(mappedBy = "milestones")
     private List<Task> tasks;
-
 
     public Milestones(Project project, String mileStoneName, Date startDate, Date endDate) {
         this.project = project;

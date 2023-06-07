@@ -1,15 +1,14 @@
 package com.nhnacademy.taskApi.dto.project.request;
 
 
-import com.nhnacademy.taskApi.domain.ProjectStatus;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class ProjectRequest {
-    private int projectId;
+public class ProjectCreateRequest {
+    private Long projectId;
     private String projectName;
     private String projectDescription;
-    private ProjectStatus statusId;
+    private Long statusId;
 }

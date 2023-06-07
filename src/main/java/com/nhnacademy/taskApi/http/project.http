@@ -1,0 +1,29 @@
+### 모든 프로젝트를 가지고옴 ()
+GET http://localhost:8080/projects
+
+
+### 프로젝트 등록
+POST http://localhost:8080/projects
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "projectId" : null,
+  "projectName" : "projectTest",
+  "projectDescription" : "Is test",
+  "statusId" : 1
+}
+
+### 프로젝트 상태 수정
+PATCH http://localhost:8080/projects/12/status
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "statusId" : 3
+}
+
+
+
+
+

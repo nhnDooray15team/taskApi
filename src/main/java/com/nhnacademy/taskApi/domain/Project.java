@@ -1,21 +1,21 @@
 package com.nhnacademy.taskApi.domain;
 
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.querydsl.core.annotations.QueryEntity;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "projects")
+@NoArgsConstructor
 @Getter
 public class Project {
     @Id
     @Column(name = "project_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int projectId;
+    private Long projectId;
 
     @Column(name = "project_name", nullable = false)
     private String projectName;
@@ -25,7 +25,8 @@ public class Project {
 
     @ManyToOne
     @JoinColumn(name = "status_id")
-    private ProjectStatus statusId;
+    @Setter
+    private ProjectStatus projectStatus;
 
     @OneToMany(mappedBy = "project")
     private List<Authority> authorities;
@@ -42,10 +43,12 @@ public class Project {
     private List<Task> tasks;
 
 
-    public Project(int projectId, String projectName, String projectDescription, ProjectStatus statusId) {
+    public Project(Long projectId, String projectName, String projectDescription, ProjectStatus projectStatus) {
         this.projectId = projectId;
         this.projectName = projectName;
         this.projectDescription = projectDescription;
-        this.statusId = statusId;
+        this.projectStatus = projectStatus;
     }
+
+
 }
