@@ -10,23 +10,27 @@ import java.io.Serializable;
 @Getter
 public class Authority {
     @EmbeddedId
-    private AuthorityPk authorityPk;
+    private Pk pk;
     @ManyToOne
     @MapsId("projectId")
     @JoinColumn(name = "project_id")
     private Project project;
 
     //나중에 Enum으로 추가
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @Embeddable
     @Getter
     @AllArgsConstructor
     @NoArgsConstructor
     @EqualsAndHashCode
-    public static class AuthorityPk implements Serializable{
-        private Integer userId;
-        private Integer projectId;
+    public static class Pk implements Serializable{
+        private String userId;
+        private Long projectId;
     }
 
+    public enum Role{
+        ADMIN, MEMBER
+    }
 }

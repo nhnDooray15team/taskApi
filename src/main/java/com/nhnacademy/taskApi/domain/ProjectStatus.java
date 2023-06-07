@@ -1,7 +1,6 @@
 package com.nhnacademy.taskApi.domain;
 
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,18 +9,23 @@ import java.util.List;
 
 @Entity
 @Table(name = "project_status")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @Getter
 public class ProjectStatus {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "status_id")
-    private int statusId;
+    private Integer statusId;
 
     @Column(name = "status_name")
-    private String statusName;
+    @Enumerated(EnumType.STRING)
+    private StatusName statusName;
 
     @OneToMany
     private List<Project> projects;
+
+    public enum StatusName{
+        ACTIVATED, DORMANT, ENDED;
+    }
 }

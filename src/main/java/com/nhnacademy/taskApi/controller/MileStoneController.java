@@ -18,10 +18,10 @@ public class MileStoneController {
     private final MileStoneService mileStoneService;
 
 
-    @GetMapping("/{project_id}/milestones")
+    @GetMapping("/{projectId}/milestones")
     @ResponseStatus(HttpStatus.OK)
-    public List<MilestonesResponse> getAllmilestones(@PathVariable Integer project_id){
+    public List<MilestonesResponse> getMileStones(@PathVariable Long projectId){
 
-        return mileStoneService.getMileStones(project_id);
+        return mileStoneService.getMileStones(projectId);
     }
 }
