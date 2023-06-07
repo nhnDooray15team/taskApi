@@ -11,11 +11,12 @@ import java.util.List;
 @Entity
 @Table(name = "projects")
 @Getter
+@NoArgsConstructor
 public class Project {
     @Id
     @Column(name = "project_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int projectId;
+    private Long projectId;
 
     @Column(name = "project_name", nullable = false)
     private String projectName;
@@ -42,7 +43,7 @@ public class Project {
     private List<Task> tasks;
 
 
-    public Project(int projectId, String projectName, String projectDescription, ProjectStatus statusId) {
+    public Project(Long projectId, String projectName, String projectDescription, ProjectStatus statusId) {
         this.projectId = projectId;
         this.projectName = projectName;
         this.projectDescription = projectDescription;

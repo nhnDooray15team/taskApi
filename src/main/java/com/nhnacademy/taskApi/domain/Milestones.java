@@ -15,7 +15,7 @@ import java.util.List;
 public class Milestones {
     @Id
     @Column(name = "mile_stone_id")
-    private Integer mileStoneId;
+    private Long mileStoneId;
 
     @Setter
     @ManyToOne
