@@ -37,7 +37,11 @@ public class AuthorityServiceImpl implements AuthorityService {
         final Project project = projectRepository.findById(projectId).orElseThrow(
                 () -> new NotFindProjectException("해당 프로젝트가 존재하지 않습니다.")
         );
-        final Authority authority = new Authority(new Authority.Pk(request.getProjectId(), request.getUserId()), project,  request.getRole());
+        final Authority authority = new Authority(
+                new Authority.Pk(request.getUserId(), request.getProjectId()),
+                project,
+                request.getRole()
+        );
         authorityRepository.saveAndFlush(authority);
 
         return new AuthorityResponse(authority.getPk().getUserId(), authority.getPk().getProjectId(), authority.getRole());
