@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "tasks")
@@ -42,11 +43,11 @@ public class Task {
     @JoinColumn(name = "mile_stone_id")
     private Milestones milestones;
 //
-//    @OneToMany(mappedBy = "task")
-//    private List<Comment> comments;
+    @OneToMany(mappedBy = "task")
+    private List<Comment> commentList;
 //
-//    @OneToMany(mappedBy = "task")
-//    private List<TaskTag> tags;
+    @OneToMany(mappedBy = "task")
+    private List<TaskTag> tags;
 
 
     public Task(String taskName, String content, LocalDateTime registerDate, LocalDateTime endDate, Project project, Milestones milestones) {

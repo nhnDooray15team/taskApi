@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Getter
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @Table(name = "tasks_has_tags")
 public class TaskTag {
     @EmbeddedId
@@ -19,7 +19,7 @@ public class TaskTag {
     private Task task;
 
     @ManyToOne
-    @JoinColumn(name = "tagId")
+    @JoinColumn(name = "tag_id")
     @MapsId("tagId")
     private Tag tag;
 
@@ -31,7 +31,7 @@ public class TaskTag {
     @EqualsAndHashCode
     @Embeddable
     public static class Pk implements Serializable{
-        private Integer taskId;
-        private Integer tagId;
+        private Long taskId;
+        private Long tagId;
     }
 }

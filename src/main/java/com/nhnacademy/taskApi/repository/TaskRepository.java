@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
-    Optional<Task> findByProject_ProjectIdAndTaskId(Long projectId, Long TaskId);
+    Optional<Task> findByProject_ProjectIdAndTaskId(Long projectId, Long taskId);
 
     Optional<List<Task>> findAllByProject_ProjectId(Long projectID);
 

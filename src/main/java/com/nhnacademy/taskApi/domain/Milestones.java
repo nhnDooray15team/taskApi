@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -28,18 +29,18 @@ public class Milestones {
 
     @Setter
     @Column(name = "start_date")
-    private Date startDate;
+    private LocalDate startDate;
 
 
     @Setter
     @Column(name = "end_date")
-    private Date endDate;
+    private LocalDate endDate;
 
     @OneToMany(mappedBy = "milestones")
     private List<Task> tasks;
 
 
-    public Milestones(Project project, String mileStoneName, Date startDate, Date endDate) {
+    public Milestones(Project project, String mileStoneName, LocalDate startDate, LocalDate endDate) {
         this.project = project;
         this.mileStoneName = mileStoneName;
         this.startDate = startDate;
