@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProjectRequest {
-    private int projectId;
+    private Long projectId;
     private String projectName;
     private String projectDescription;
     private ProjectStatus statusId;

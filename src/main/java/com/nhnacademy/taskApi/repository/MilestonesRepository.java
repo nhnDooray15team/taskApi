@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MilestonesRepository extends JpaRepository<Milestones, Integer> {
+public interface MilestonesRepository extends JpaRepository<Milestones, Long> {
     List<MilestonesResponse> findAllByProject_ProjectId(Integer projectId);
 }
