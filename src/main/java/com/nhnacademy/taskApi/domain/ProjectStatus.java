@@ -3,6 +3,7 @@ package com.nhnacademy.taskApi.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,7 +17,11 @@ public class ProjectStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "status_id")
+<<<<<<< HEAD
     private Integer statusId;
+=======
+    private Long statusId;
+>>>>>>> dev-version-0.2
 
     @Column(name = "status_name")
     @Enumerated(EnumType.STRING)

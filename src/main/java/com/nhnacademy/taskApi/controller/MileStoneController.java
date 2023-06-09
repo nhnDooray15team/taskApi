@@ -1,5 +1,7 @@
 package com.nhnacademy.taskApi.controller;
 
+import com.nhnacademy.taskApi.dto.milestone.request.MilestonesCreateRequest;
+import com.nhnacademy.taskApi.dto.milestone.request.MilestonesModifyRequest;
 import com.nhnacademy.taskApi.dto.milestone.response.MilestonesResponse;
 import com.nhnacademy.taskApi.service.milestone.MileStoneService;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +22,30 @@ public class MileStoneController {
 
     @GetMapping("/{projectId}/milestones")
     @ResponseStatus(HttpStatus.OK)
+<<<<<<< HEAD
     public List<MilestonesResponse> getMileStones(@PathVariable Long projectId){
 
         return mileStoneService.getMileStones(projectId);
+=======
+    public List<MilestonesResponse> getAllmilestones(@PathVariable("project_id") Long projectId){
+        return mileStoneService.getMileStones(projectId);
     }
+
+    @PostMapping("/{project_id}/milestone")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createMilestone(@PathVariable("project_id") Long projectId,
+                                @RequestBody MilestonesCreateRequest milestonesRequest){
+        mileStoneService.createMilestone(projectId, milestonesRequest);
+
+>>>>>>> dev-version-0.2
+    }
+
+    @PutMapping("/{project_id}/milestones/{milestones_id}")
+    public void modifyMilestone(@PathVariable("project_id") Long projectId, @PathVariable("milestones_id") Long milestoneId,
+                                @RequestBody MilestonesModifyRequest milestonesModifyRequest){
+
+        mileStoneService.modifyMilestone(projectId,milestoneId,milestonesModifyRequest);
+
+    }
+
 }
