@@ -11,5 +11,5 @@ import lombok.Setter;
 public class ProjectGetResponse {
     private Long projectId;
     private String projectName;
-    private Long statusId;
+    private Integer statusId;
 }

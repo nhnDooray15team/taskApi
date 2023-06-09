@@ -1,9 +1,8 @@
 package com.nhnacademy.taskApi.controller;
 
-
-import com.nhnacademy.taskApi.dto.project.request.ProjectCreateRequest;
 import com.nhnacademy.taskApi.dto.project.request.ProjectGetResponse;
 import com.nhnacademy.taskApi.dto.project.request.ProjectModifyRequest;
+import com.nhnacademy.taskApi.dto.project.request.ProjectRequest;
 import com.nhnacademy.taskApi.service.project.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +18,7 @@ public class ProjectController {
 
     @PostMapping("/projects")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createProject(@RequestBody ProjectCreateRequest projectCreateRequest){
+    public void createProject(@RequestBody ProjectRequest projectCreateRequest){
         projectService.createProject(projectCreateRequest);
 
     }

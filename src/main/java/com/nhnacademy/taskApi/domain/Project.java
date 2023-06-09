@@ -1,7 +1,6 @@
 package com.nhnacademy.taskApi.domain;
 
 
-import com.querydsl.core.annotations.QueryEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -9,7 +8,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "projects")
-@NoArgsConstructor
 @Getter
 @NoArgsConstructor
 public class Project {
@@ -42,12 +40,8 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE)
     private List<Task> tasks;
 
-
-<<<<<<< HEAD
     public Project(Long projectId, String projectName, String projectDescription, ProjectStatus statusId) {
-=======
-    public Project(Long projectId, String projectName, String projectDescription, ProjectStatus projectStatus) {
->>>>>>> dev-version-0.2
+
         this.projectId = projectId;
         this.projectName = projectName;
         this.projectDescription = projectDescription;

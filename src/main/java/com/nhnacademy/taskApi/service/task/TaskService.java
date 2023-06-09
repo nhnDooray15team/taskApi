@@ -7,6 +7,8 @@ import com.nhnacademy.taskApi.dto.task.TaskRequest;
 import com.nhnacademy.taskApi.dto.task.TaskResponse;
 import com.nhnacademy.taskApi.exception.NotFoundTaskException;
 import com.nhnacademy.taskApi.repository.*;
+import com.nhnacademy.taskApi.repository.milestone.MilestonesRepository;
+import com.nhnacademy.taskApi.repository.project.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
