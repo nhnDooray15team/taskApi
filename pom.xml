@@ -25,7 +25,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-<<<<<<< HEAD
 		<!--Querydsl-->
 		<dependency>
 			<groupId>com.querydsl</groupId>
@@ -34,18 +33,6 @@
 		</dependency>
 		<dependency>
 			<groupId>com.querydsl</groupId>
-=======
-
-
-		<!--Querydsl-->
-		<dependency>
-			<groupId>com.querydsl</groupId>
-			<artifactId>querydsl-apt</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.querydsl</groupId>
->>>>>>> dev-version-0.2
 			<artifactId>querydsl-jpa</artifactId>
 		</dependency>
 

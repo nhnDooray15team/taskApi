@@ -1,41 +1,69 @@
 package com.nhnacademy.taskApi.service.project;
 
-
-<<<<<<< HEAD
 import com.nhnacademy.taskApi.domain.Project;
-import com.nhnacademy.taskApi.dto.project.request.ProjectRequest;
-import com.nhnacademy.taskApi.repository.ProjectRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-=======
-import com.nhnacademy.taskApi.dto.project.request.ProjectCreateRequest;
+import com.nhnacademy.taskApi.domain.ProjectStatus;
 import com.nhnacademy.taskApi.dto.project.request.ProjectGetResponse;
 import com.nhnacademy.taskApi.dto.project.request.ProjectModifyRequest;
+import com.nhnacademy.taskApi.dto.project.request.ProjectRequest;
+import com.nhnacademy.taskApi.exception.project.ProjectCreateException;
+import com.nhnacademy.taskApi.exception.project.ProjectNotFoundList;
+import com.nhnacademy.taskApi.exception.project.ProjectNotFountId;
+import com.nhnacademy.taskApi.exception.project.ProjectNotFountStatusId;
+import com.nhnacademy.taskApi.repository.ProjectStatusRepository;
+import com.nhnacademy.taskApi.repository.project.ProjectRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
->>>>>>> dev-version-0.2
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class ProjectService{
+public class ProjectService {
     private final ProjectRepository projectRepository;
+    private final ProjectStatusRepository projectStatusRepository;
 
-<<<<<<< HEAD
 
-    public void createProject(ProjectRequest projectRequest) {
-        // TODO 2 : 관계에서 외래키같은거 어떻게 처리해야하는지 ..
+    @Transactional
+    public void createProject(ProjectRequest projectCreateRequest) {
+        ProjectStatus projectStatus = projectStatusRepository.findById(projectCreateRequest.getStatusId()).orElseThrow(
+                ()-> new ProjectCreateException("상태 값이 존재하지않습니다.")
+        );
+
         projectRepository.save(
-                new Project(projectRequest.getProjectId(), projectRequest.getProjectName(),
-                        projectRequest.getProjectDescription(), projectRequest.getStatusId())
+                new Project(projectCreateRequest.getProjectId(), projectCreateRequest.getProjectName(),
+                        projectCreateRequest.getProjectDescription(), projectStatus)
         );
     }
-=======
-public interface ProjectService {
-    void createProject(ProjectCreateRequest projectCreateRequest);
 
-    void modifyProject(Long projectId, ProjectModifyRequest projectModifyRequest);
+    @Transactional
+    public void modifyProject(Long projectId, ProjectModifyRequest projectModifyRequest) {
+        Project project = projectRepository.findById(projectId).orElseThrow(
+                () -> new ProjectNotFountId("프로젝트 아이디를 찾을수 없습니다.")
+        );
+
+        ProjectStatus projectStatus = projectStatusRepository.findById(projectModifyRequest.getStatusId()).orElseThrow(
+                () -> new ProjectNotFountStatusId("요청하신 상태정보를 찾을수 없습니다.")
+        );
+
+        project.setProjectStatus(projectStatus);
+    }
+
+    public List<ProjectGetResponse> getAllProject() {
+        Optional<List<Project>> projects = Optional.ofNullable(projectRepository.getAllBy().orElseThrow(
+                () -> new ProjectNotFoundList("프로젝트 목록들이 비어있습니다.")
+        ));
+
+        return projects.get()
+                .stream()
+                .map(p -> new ProjectGetResponse(
+                        p.getProjectId(),
+                        p.getProjectName(),
+                        p.getProjectStatus().getStatusId()))
+                .collect(Collectors.toList());
+    }
 
 
-    List<ProjectGetResponse> getAllProject();
->>>>>>> dev-version-0.2
 }

@@ -4,12 +4,7 @@ package com.nhnacademy.taskApi.domain;
 import lombok.*;
 
 import javax.persistence.*;
-<<<<<<< HEAD
-import java.io.Serializable;
 import java.time.LocalDate;
-=======
->>>>>>> dev-version-0.2
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -45,12 +40,9 @@ public class Milestones {
     @OneToMany(mappedBy = "milestones")
     private List<Task> tasks;
 
-<<<<<<< HEAD
 
     public Milestones(Project project, String mileStoneName, LocalDate startDate, LocalDate endDate) {
-=======
-    public Milestones(Project project, String mileStoneName, Date startDate, Date endDate) {
->>>>>>> dev-version-0.2
+
         this.project = project;
         this.mileStoneName = mileStoneName;
         this.startDate = startDate;

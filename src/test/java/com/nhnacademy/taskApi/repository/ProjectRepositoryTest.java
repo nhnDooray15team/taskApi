@@ -2,6 +2,7 @@ package com.nhnacademy.taskApi.repository;
 
 import com.nhnacademy.taskApi.domain.Project;
 import com.nhnacademy.taskApi.domain.ProjectStatus;
+import com.nhnacademy.taskApi.repository.project.ProjectRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

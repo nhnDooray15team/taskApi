@@ -5,7 +5,7 @@ import com.nhnacademy.taskApi.domain.Project;
 import com.nhnacademy.taskApi.dto.authority.request.AuthorityRequest;
 import com.nhnacademy.taskApi.dto.authority.response.AuthorityDto;
 import com.nhnacademy.taskApi.repository.AuthorityRepository;
-import com.nhnacademy.taskApi.repository.ProjectRepository;
+import com.nhnacademy.taskApi.repository.project.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -27,6 +27,7 @@ public class Authority {
     @NoArgsConstructor
     @EqualsAndHashCode
     public static class Pk implements Serializable{
+
         private String userId;
         private Long projectId;
     }

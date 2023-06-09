@@ -1,9 +1,7 @@
 package com.nhnacademy.taskApi.controller;
 
-import com.nhnacademy.taskApi.domain.Authority;
 import com.nhnacademy.taskApi.dto.authority.request.AuthorityRequest;
 import com.nhnacademy.taskApi.dto.authority.response.AuthorityDto;
-import com.nhnacademy.taskApi.repository.AuthorityRepository;
 import com.nhnacademy.taskApi.service.AuthorityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.BindingResult;
