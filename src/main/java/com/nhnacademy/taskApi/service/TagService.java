@@ -1,4 +1,4 @@
-package com.nhnacademy.taskApi.service.tag;
+package com.nhnacademy.taskApi.service;
 
 import com.nhnacademy.taskApi.domain.Project;
 import com.nhnacademy.taskApi.domain.Tag;
