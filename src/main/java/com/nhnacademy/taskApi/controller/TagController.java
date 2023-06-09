@@ -3,7 +3,7 @@ package com.nhnacademy.taskApi.controller;
 import com.nhnacademy.taskApi.dto.tag.request.TagRequest;
 import com.nhnacademy.taskApi.dto.tag.response.TagDto;
 import com.nhnacademy.taskApi.dto.tag.response.TagResponseDto;
-import com.nhnacademy.taskApi.service.tag.TagService;
+import com.nhnacademy.taskApi.service.TagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;

@@ -1,10 +1,7 @@
 package com.nhnacademy.taskApi.domain;
 
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -24,8 +21,11 @@ public class Comment {
     @Column(name = "writer_id")
     private String writerId;
 
+    @Setter
+    @Column(nullable = false)
     private String content;
 
+    @Setter
     @Column(name = "register_date")
     private LocalDateTime registerDate;
 

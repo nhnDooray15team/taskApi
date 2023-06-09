@@ -8,6 +8,7 @@ import java.io.Serializable;
 @Table(name = "authorities")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@AllArgsConstructor
 public class Authority {
     @EmbeddedId
     private Pk pk;
