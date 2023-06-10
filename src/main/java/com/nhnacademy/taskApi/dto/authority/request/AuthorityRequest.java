@@ -9,5 +9,4 @@ import javax.validation.constraints.NotNull;
 public class AuthorityRequest {
     @NotNull
     private String userId;
-    private Authority.Role role;
 }

@@ -39,7 +39,7 @@ public class TaskController {
         return "{\"result\":\"OK\"}";
     }
 
-    @PutMapping("/projects/{projectId}/tasks/{taskId}")
+    @PatchMapping("/projects/{projectId}/tasks/{taskId}")
     public TaskResponse updateProjectTask(@PathVariable Long projectId,
                                           @PathVariable Long taskId,
                                           @RequestBody TaskRequest request) {
