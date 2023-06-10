@@ -23,11 +23,7 @@ public class MileStoneController {
 
     @GetMapping("/{projectId}/milestones")
     @ResponseStatus(HttpStatus.OK)
-//<<<<<<< HEAD
-//    public List<MilestonesResponse> getMileStones(@PathVariable Long projectId){
-//
-//        return mileStoneService.getMileStones(projectId);
-//=======
+
     public List<MilestonesResponse> getAllmilestones(@PathVariable("project_id") Long projectId){
         return mileStoneService.getMileStones(projectId);
     }
@@ -38,11 +34,11 @@ public class MileStoneController {
                                 @RequestBody MilestonesRequest milestonesRequest){
         mileStoneService.createMilestone(projectId, milestonesRequest);
 
-//>>>>>>> dev-version-0.2
     }
 
-    @PutMapping("/{project_id}/milestones/{milestones_id}")
-    public void modifyMilestone(@PathVariable("project_id") Long projectId, @PathVariable("milestones_id") Long milestoneId,
+    @PatchMapping("/{project_id}/milestones/{milestones_id}")
+    public void modifyMilestone(@PathVariable("project_id") Long projectId,
+                                @PathVariable("milestones_id") Long milestoneId,
                                 @RequestBody MilestonesModifyRequest milestonesModifyRequest){
 
         mileStoneService.modifyMilestone(projectId,milestoneId,milestonesModifyRequest);

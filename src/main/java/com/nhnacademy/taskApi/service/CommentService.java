@@ -8,16 +8,19 @@ import com.nhnacademy.taskApi.repository.CommentRepository;
 import com.nhnacademy.taskApi.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class CommentService {
     private final CommentRepository commentRepository;
     private final TaskRepository taskRepository;
 
+    @Transactional(readOnly = true)
     public List<CommentDto> getCommentList(Long taskId){
         if(!taskRepository.existsById(taskId)){
             throw new IllegalArgumentException("해당하는 업무가 없습니다.");

@@ -3,8 +3,13 @@ package com.nhnacademy.taskApi.dto.project.request;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
+
 @Getter
-@Setter
 public class ProjectModifyRequest {
-    private Long statusId;
+    @NotNull
+    private String projectName;
+    private String projectDescription;
+    @NotNull
+    private String statusName;
 }
