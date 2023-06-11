@@ -7,7 +7,7 @@ import java.util.Optional;
 
 
 public interface MilestonesRepository extends JpaRepository<Milestones, Long> {
-    //
+
     Optional<List<Milestones>> findAllByProject_ProjectId(Long projectId);
 
 }

@@ -30,6 +30,7 @@ public class MileStoneService {
                 .get()
                 .stream()
                 .map(m -> new MilestonesResponse(
+                        m.getMileStoneId(),
                         m.getProject().getProjectId(),
                         m.getMileStoneName(),
                         m.getStartDate(),

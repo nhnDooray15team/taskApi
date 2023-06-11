@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "authorities")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @Getter
 @AllArgsConstructor
 public class Authority {
@@ -23,11 +23,13 @@ public class Authority {
 
     @Embeddable
     @Getter
+    @Setter
     @AllArgsConstructor
     @NoArgsConstructor
     @EqualsAndHashCode
     public static class Pk implements Serializable{
 
+        @Column(name = "user_id")
         private String userId;
         private Long projectId;
     }

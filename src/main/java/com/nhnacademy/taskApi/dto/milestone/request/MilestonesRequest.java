@@ -3,16 +3,24 @@ package com.nhnacademy.taskApi.dto.milestone.request;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.lang.Nullable;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 
 @Getter
 @Setter
 public class MilestonesRequest {
-    //등록부분에 project_id를 등록하는것이 있어 이부분 이야기 필요함
+
     private Long projectId;
+    @NotBlank(message = "마일스톤이름을 입력해주세요")
+    @Size(max = 45)
     private String mileStoneName;
+
+    @Nullable
     private LocalDate startDate;
+    @Nullable
     private LocalDate endDate;
 }

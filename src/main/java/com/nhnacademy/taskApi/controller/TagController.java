@@ -3,7 +3,7 @@ package com.nhnacademy.taskApi.controller;
 import com.nhnacademy.taskApi.dto.tag.request.TagRequest;
 import com.nhnacademy.taskApi.dto.tag.response.TagDto;
 import com.nhnacademy.taskApi.dto.tag.response.TagResponseDto;
-import com.nhnacademy.taskApi.service.TagService;
+import com.nhnacademy.taskApi.service.tag.TagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -38,7 +38,8 @@ public class TagController {
      * @return 업무 별 tag들을 가져옴.
      */
     @GetMapping("/tasks/{taskId}/tags")
-    public List<TagDto> getTagsByTaskId(@PathVariable("projectId") Long projectId, @PathVariable("taskId") Long taskId){
+    public List<TagDto> getTagsByTaskId(@PathVariable("projectId") Long projectId,
+                                        @PathVariable("taskId") Long taskId){
         return tagService.getTagsByTask(taskId);
     }
 
@@ -51,13 +52,15 @@ public class TagController {
      */
     @PostMapping("/tags")
     @ResponseStatus(HttpStatus.CREATED)
-    public void registerTag(@PathVariable("projectId") Long projectId, @RequestBody @Valid TagRequest tagRequest, BindingResult bindingResult){
+    public void registerTag(@PathVariable("projectId") Long projectId,
+                            @RequestBody @Valid TagRequest tagRequest,
+                            BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             throw new ValidationException(); //exception 처리 추가하기
         }
         tagService.insertTag(projectId, tagRequest);
     }
-    @PutMapping("/tags/{tagId}")
+    @PatchMapping("/tags/{tagId}")
     @ResponseStatus(HttpStatus.OK)
     public void updateTag(@PathVariable("projectId") Long projectId,
                           @PathVariable("tagId") Long tagId,
@@ -70,7 +73,6 @@ public class TagController {
     }
 
     @DeleteMapping("/tags/{tagId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteTag(@PathVariable("projectId") Long projectId,
                           @PathVariable("tagId") Long tagId){
         tagService.removeTag(tagId);

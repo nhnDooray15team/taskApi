@@ -1,4 +1,4 @@
-package com.nhnacademy.taskApi.repository;
+package com.nhnacademy.taskApi.repository.comment;
 
 import com.nhnacademy.taskApi.domain.Comment;
 import com.nhnacademy.taskApi.dto.comment.response.CommentDto;

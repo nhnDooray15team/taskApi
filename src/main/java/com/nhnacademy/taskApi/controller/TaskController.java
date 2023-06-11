@@ -4,6 +4,7 @@ import com.nhnacademy.taskApi.dto.task.TaskRequest;
 import com.nhnacademy.taskApi.dto.task.TaskResponse;
 import com.nhnacademy.taskApi.service.task.TaskService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class TaskController {
     private final TaskService taskService;
 
     @PostMapping("/projects/{projectId}/tasks")
+    @ResponseStatus(HttpStatus.CREATED)
     public String createTask(@PathVariable Long projectId,
                              @RequestBody TaskRequest request) {
         taskService.createTask(projectId, request);
@@ -39,7 +41,8 @@ public class TaskController {
         return "{\"result\":\"OK\"}";
     }
 
-    @PutMapping("/projects/{projectId}/tasks/{taskId}")
+    @PatchMapping("/projects/{projectId}/tasks/{taskId}")
+    @ResponseStatus(HttpStatus.OK)
     public TaskResponse updateProjectTask(@PathVariable Long projectId,
                                           @PathVariable Long taskId,
                                           @RequestBody TaskRequest request) {

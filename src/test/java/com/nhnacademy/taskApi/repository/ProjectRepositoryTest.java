@@ -1,18 +1,10 @@
 package com.nhnacademy.taskApi.repository;
 
-import com.nhnacademy.taskApi.domain.Project;
-import com.nhnacademy.taskApi.domain.ProjectStatus;
 import com.nhnacademy.taskApi.repository.project.ProjectRepository;
+import com.nhnacademy.taskApi.repository.tag.TagRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class ProjectRepositoryTest {

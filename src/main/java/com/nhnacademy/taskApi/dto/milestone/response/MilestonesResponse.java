@@ -11,6 +11,8 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 public class MilestonesResponse {
+
+    private Long milestoneId;
     private Long projectId;
     private String mileStoneName;
     private LocalDate startDate;

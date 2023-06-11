@@ -16,9 +16,11 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long projectId;
 
+    @Setter
     @Column(name = "project_name", nullable = false)
     private String projectName;
 
+    @Setter
     @Column(name = "project_description")
     private String projectDescription;
 
@@ -40,13 +42,11 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE)
     private List<Task> tasks;
 
-    public Project(Long projectId, String projectName, String projectDescription,
-                   ProjectStatus statusId) {
-
-        this.projectId = projectId;
+    public Project(String projectName, String projectDescription, ProjectStatus projectStatus) {
         this.projectName = projectName;
         this.projectDescription = projectDescription;
         this.projectStatus = projectStatus;
     }
+
 
 }

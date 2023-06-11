@@ -2,13 +2,19 @@ package com.nhnacademy.taskApi.dto.project.request;
 
 
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Getter
-@Setter
+@NoArgsConstructor
 public class ProjectRequest {
-    private Long projectId;
+    @NotBlank
     private String projectName;
+
+    @Nullable
+    @Size(max = 250)
     private String projectDescription;
-    private Long statusId;
 }

@@ -1,4 +1,4 @@
-package com.nhnacademy.taskApi.repository;
+package com.nhnacademy.taskApi.repository.task;
 
 import com.nhnacademy.taskApi.domain.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
