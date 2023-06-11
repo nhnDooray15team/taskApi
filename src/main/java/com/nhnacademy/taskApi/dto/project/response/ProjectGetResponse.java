@@ -1,4 +1,4 @@
-package com.nhnacademy.taskApi.dto.project.request;
+package com.nhnacademy.taskApi.dto.project.response;
 
 
 import lombok.AllArgsConstructor;
@@ -12,4 +12,5 @@ public class ProjectGetResponse {
     private Long projectId;
     private String projectName;
     private Integer statusId;
+    private String role;
 }

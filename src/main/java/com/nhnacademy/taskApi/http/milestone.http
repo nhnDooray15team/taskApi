@@ -28,3 +28,8 @@ Content-Type: application/json
   "endDate" : "2023-06-07"
 }
 
+### 해당 프로젝트내에 있는 마일스톤을 삭제함
+### /projects/{project_id}/mildstones/{milestones_id}
+DELETE http://localhost:8080/projects/2/milestones/8
+
+

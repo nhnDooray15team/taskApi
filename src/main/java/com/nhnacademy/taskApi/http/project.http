@@ -1,6 +1,10 @@
 ### 모든 프로젝트를 가지고옴 ()
 GET http://localhost:8080/projects
 
+### userid가 포함되어있는 프로젝트들 리스트
+### /{userId}/projects
+GET http://localhost:8080/1/projects
+
 
 ### 프로젝트 등록
 POST http://localhost:8080/projects

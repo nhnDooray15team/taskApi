@@ -1,7 +1,7 @@
 package com.nhnacademy.taskApi.exception.project;
 
-public class ProjectNotFountId extends RuntimeException{
-    public ProjectNotFountId(String message) {
+public class ProjectNotFountIdException extends RuntimeException{
+    public ProjectNotFountIdException(String message) {
         super(message);
     }
 }

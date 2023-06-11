@@ -11,6 +11,5 @@ public class TaskApiApplication {
 
 		System.out.println("test");
 	}
-
 }
 

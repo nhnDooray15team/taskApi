@@ -40,13 +40,13 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE)
     private List<Task> tasks;
 
-    public Project(Long projectId, String projectName, String projectDescription, ProjectStatus statusId) {
+    public Project(Long projectId, String projectName, String projectDescription,
+                   ProjectStatus statusId) {
 
         this.projectId = projectId;
         this.projectName = projectName;
         this.projectDescription = projectDescription;
         this.projectStatus = projectStatus;
     }
-
 
 }
