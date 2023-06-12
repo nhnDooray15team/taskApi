@@ -5,6 +5,7 @@ import com.nhnacademy.taskApi.domain.Tag;
 import com.nhnacademy.taskApi.dto.tag.request.TagRequest;
 import com.nhnacademy.taskApi.dto.tag.response.TagDto;
 import com.nhnacademy.taskApi.dto.tag.response.TagResponseDto;
+import com.nhnacademy.taskApi.exception.NotFoundException;
 import com.nhnacademy.taskApi.repository.tag.TagRepository;
 import com.nhnacademy.taskApi.repository.project.ProjectRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,11 +28,11 @@ public class TagService {
     private final ProjectRepository projectRepository;
 
     public void insertTag(Long projectId, TagRequest tagRequest){
-        if(tagRepository.existsByProjectIdAndTagName(projectId, tagRequest.getTagName())){
-            throw new IllegalArgumentException("Already Exists Tag. Change the Name");
-        }
+//        if(tagRepository.existTag(projectId, tagRequest.getTagName())){
+//            throw new NotFoundException("이미 존재하는 태그이름입니다. 변경해주세요");
+//        }
         Project project = projectRepository.findById(projectId)
-                .orElseThrow(()-> new IllegalArgumentException("Don't search the Project"));
+                .orElseThrow(()-> new NotFoundException("프로젝트를 찾을수 없습니다."));
         tagRepository.save(new Tag(tagRequest.getTagName(), project));
     }
     @Transactional(readOnly = true)
@@ -39,21 +40,21 @@ public class TagService {
         return tagRepository.findAllByProject_ProjectId(projectId);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<TagDto> getTagsByTask(Long taskId){
         return tagRepository.findByTaskId(taskId);
     }
 
     public void updateTag(Long projectId,Long tagId, TagRequest tagRequest){
-        if(tagRepository.existsByProjectIdAndTagName(projectId, tagRequest.getTagName())){
-            throw new IllegalArgumentException("Already Exists Tag. Change the name, please");
-        }
-        Tag tag = tagRepository.findById(tagId).orElseThrow(()->new IllegalArgumentException("No such tag data"));
+//        if(tagRepository.existTag(projectId, tagRequest.getTagName())){
+//            throw new NotFoundException("이미 존재하는 태그이름입니다. 변경해주세요");
+//        }
+        Tag tag = tagRepository.findById(tagId).orElseThrow(()->new NotFoundException("태그 데이터를 찾을수 없습니다."));
         tag.setTagName(tagRequest.getTagName());
     }
     public void removeTag(Long tagId){
         if(!tagRepository.existsById(tagId)){
-            throw new IllegalArgumentException("No such Tag");
+            throw new NotFoundException("태그 데이터를 찾을수 없습니다.");
         }
         tagRepository.deleteById(tagId);
     }

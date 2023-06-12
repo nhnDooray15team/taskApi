@@ -18,7 +18,7 @@ Content-Type: application/json
 
 ### 해당 프로젝트내에 마일스톤을 수정함
 ### /projects/{projectId}/milestones/{milestonesId}
-PATCH http://localhost:8080/projects/2/milestones/11 HTTP/1.1
+PATCH http://localhost:8080/projects/2/milestones/12 HTTP/1.1
 Host: localhost:8080
 Content-Type: application/json
 
@@ -30,6 +30,6 @@ Content-Type: application/json
 
 ### 해당 프로젝트내에 있는 마일스톤을 삭제함
 ### /projects/{projectId}/mildstones/{milestonesId}
-DELETE http://localhost:8080/projects/2/milestones/11 HTTP/1.1
+DELETE http://localhost:8080/projects/2/milestones/8 HTTP/1.1
 
 

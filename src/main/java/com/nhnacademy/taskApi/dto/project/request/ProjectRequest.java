@@ -15,6 +15,5 @@ public class ProjectRequest {
     private String projectName;
 
     @Nullable
-    @Size(max = 250)
     private String projectDescription;
 }

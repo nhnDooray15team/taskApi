@@ -2,10 +2,13 @@ package com.nhnacademy.taskApi.service.task;
 
 import com.nhnacademy.taskApi.domain.Milestones;
 import com.nhnacademy.taskApi.domain.Project;
+import com.nhnacademy.taskApi.domain.Tag;
 import com.nhnacademy.taskApi.domain.Task;
+import com.nhnacademy.taskApi.dto.comment.response.CommentResponseDto;
+import com.nhnacademy.taskApi.dto.tag.response.TagDto;
 import com.nhnacademy.taskApi.dto.task.TaskRequest;
 import com.nhnacademy.taskApi.dto.task.TaskResponse;
-import com.nhnacademy.taskApi.exception.NotFoundTaskException;
+import com.nhnacademy.taskApi.exception.NotFoundException;
 import com.nhnacademy.taskApi.repository.comment.CommentRepository;
 import com.nhnacademy.taskApi.repository.milestone.MilestonesRepository;
 import com.nhnacademy.taskApi.repository.project.ProjectRepository;
@@ -28,7 +31,7 @@ public class TaskService{
     private final ProjectRepository projectRepository;
     private final MilestonesRepository milestonesRepository;
     private final CommentRepository commentRepository;
-    private final TagRepository tagRepository;
+    private final  TagRepository tagRepository;
 
     @Transactional
     public void createTask(Long projectId, TaskRequest taskRequest) {
@@ -47,24 +50,22 @@ public class TaskService{
     }
 
     public TaskResponse getProjectTask(Long projectId, Long taskId) {
-        final Task task = taskRepository.findByProject_ProjectIdAndTaskId(projectId, taskId).orElseThrow(
-                () -> new NotFoundTaskException("해당 업무가 존재하지 않습니다.")
+         Task task = taskRepository.findByProject_ProjectIdAndTaskId(projectId, taskId).orElseThrow(
+                () -> new NotFoundException("해당 업무가 존재하지 않습니다.")
         );
-        return getTaskResponse(task);
+
+         List<TagDto> tagDtoList = tagRepository.findByTaskId(taskId);
+         List<CommentResponseDto> commentResponseDtoList = commentRepository.findByTaskId(taskId);
+        return new TaskResponse(task,tagDtoList, commentResponseDtoList);
     }
 
     public List<TaskResponse> getProjectTaskList(Long projectId) {
         final List<Task> tasks = taskRepository.findAllByProject_ProjectId(projectId).orElseThrow(
-                () -> new NotFoundTaskException("해당 프로젝트의 업무가 존재하지 않습니다.")
+                () -> new NotFoundException("해당 프로젝트의 업무가 존재하지 않습니다.")
         );
         return tasks.stream()
                 .map(t -> new TaskResponse(
-                        t.getTaskId(),
-                        t.getProject().getProjectId(),
-                        t.getTaskName(),
-                        t.getContent(),
-                        t.getRegisterDate(),
-                        t.getEndDate()))
+                        (Task) tasks))
                 .collect(Collectors.toList());
     }
 
@@ -76,7 +77,7 @@ public class TaskService{
     @Transactional
     public TaskResponse modifyProjectTask(Long projectId, Long taskId, TaskRequest request) {
         final Task task = taskRepository.findByProject_ProjectIdAndTaskId(projectId, taskId).orElseThrow(
-                () -> new NotFoundTaskException("해당 프로젝트의 업무가 존재하지 않습니다.")
+                () -> new NotFoundException("해당 프로젝트의 업무가 존재하지 않습니다.")
         );
 
         task.setTaskName(request.getTaskName());
@@ -84,17 +85,8 @@ public class TaskService{
 
         taskRepository.save(task);
 
-        return getTaskResponse(task);
+        return new TaskResponse(task);
+
     }
 
-    private static TaskResponse getTaskResponse(Task task) {
-        return new TaskResponse(
-                task.getTaskId(),
-                task.getProject().getProjectId(),
-                task.getTaskName(),
-                task.getContent(),
-                task.getRegisterDate(),
-                task.getEndDate()
-        );
-    }
 }

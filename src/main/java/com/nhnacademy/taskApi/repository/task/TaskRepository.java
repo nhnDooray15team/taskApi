@@ -1,12 +1,13 @@
 package com.nhnacademy.taskApi.repository.task;
 
 import com.nhnacademy.taskApi.domain.Task;
+import com.nhnacademy.taskApi.repository.tag.TagRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface TaskRepository extends JpaRepository<Task, Long> {
+public interface TaskRepository extends JpaRepository<Task, Long> , TaskRepositoryCustom {
 
     Optional<Task> findByProject_ProjectIdAndTaskId(Long projectId, Long taskId);
 
