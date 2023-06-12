@@ -1,4 +1,4 @@
-package com.nhnacademy.taskApi.service;
+package com.nhnacademy.taskApi.service.authority;
 
 import com.nhnacademy.taskApi.domain.Authority;
 import com.nhnacademy.taskApi.domain.Project;

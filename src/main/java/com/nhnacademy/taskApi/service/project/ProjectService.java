@@ -3,12 +3,11 @@ package com.nhnacademy.taskApi.service.project;
 import com.nhnacademy.taskApi.domain.Authority;
 import com.nhnacademy.taskApi.domain.Project;
 import com.nhnacademy.taskApi.domain.ProjectStatus;
-import com.nhnacademy.taskApi.dto.project.response.ProjectGetResponse;
 import com.nhnacademy.taskApi.dto.project.request.ProjectModifyRequest;
 import com.nhnacademy.taskApi.dto.project.request.ProjectRequest;
-import com.nhnacademy.taskApi.exception.project.ProjectNotFountId;
-import com.nhnacademy.taskApi.exception.project.ProjectNotFountStatusId;
-import com.nhnacademy.taskApi.repository.ProjectStatusRepository;
+import com.nhnacademy.taskApi.dto.project.response.ProjectGetResponse;
+import com.nhnacademy.taskApi.exception.project.ProjectNotFountIdException;
+import com.nhnacademy.taskApi.repository.projectstatus.ProjectStatusRepository;
 import com.nhnacademy.taskApi.repository.authority.AuthorityRepository;
 import com.nhnacademy.taskApi.repository.project.ProjectRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,9 +15,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -39,7 +35,7 @@ public class ProjectService {
 
     public void modifyProject(Long projectId, ProjectModifyRequest projectModifyRequest) {
         Project project = projectRepository.findById(projectId).orElseThrow(
-                () -> new ProjectNotFountId("프로젝트 아이디를 찾을수 없습니다.")
+                () -> new ProjectNotFountIdException("프로젝트 아이디를 찾을수 없습니다.")
         );
         ProjectStatus projectStatus = projectStatusRepository.findByStatusName(ProjectStatus.StatusName.valueOf(projectModifyRequest.getStatusName()));
         project.setProjectName(projectModifyRequest.getProjectName());

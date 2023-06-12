@@ -13,7 +13,6 @@ import java.util.List;
 @Getter
 public class Milestones {
 
-    // generatedvalue를 추가해줌
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "mile_stone_id")

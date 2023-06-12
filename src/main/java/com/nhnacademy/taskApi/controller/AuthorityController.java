@@ -2,7 +2,7 @@ package com.nhnacademy.taskApi.controller;
 
 import com.nhnacademy.taskApi.dto.authority.request.AuthorityRequest;
 import com.nhnacademy.taskApi.dto.authority.response.AuthorityDto;
-import com.nhnacademy.taskApi.service.AuthorityService;
+import com.nhnacademy.taskApi.service.authority.AuthorityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;

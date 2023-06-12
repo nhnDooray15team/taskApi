@@ -1,15 +1,19 @@
 package com.nhnacademy.taskApi.dto.project.request;
 
 import lombok.Getter;
-import lombok.Setter;
+import org.springframework.lang.Nullable;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 @Getter
 public class ProjectModifyRequest {
-    @NotNull
+    @NotBlank(message = "프로젝트 이름을 입력해주세요")
+    @Size(max = 45)
     private String projectName;
+
+    @Nullable
+    @Size(max = 250)
     private String projectDescription;
-    @NotNull
+    @NotBlank(message = "프로젝트의 상태를 설정해주세요")
     private String statusName;
 }

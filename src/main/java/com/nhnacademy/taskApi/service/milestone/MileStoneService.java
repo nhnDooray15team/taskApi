@@ -5,6 +5,8 @@ import com.nhnacademy.taskApi.domain.Project;
 import com.nhnacademy.taskApi.dto.milestone.request.MilestonesModifyRequest;
 import com.nhnacademy.taskApi.dto.milestone.request.MilestonesRequest;
 import com.nhnacademy.taskApi.dto.milestone.response.MilestonesResponse;
+import com.nhnacademy.taskApi.exception.milestone.MilestoneNotFoundIdException;
+import com.nhnacademy.taskApi.exception.project.ProjectNotFountIdException;
 import com.nhnacademy.taskApi.repository.milestone.MilestonesRepository;
 import com.nhnacademy.taskApi.repository.project.ProjectRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +30,7 @@ public class MileStoneService {
                 .get()
                 .stream()
                 .map(m -> new MilestonesResponse(
+                        m.getMileStoneId(),
                         m.getProject().getProjectId(),
                         m.getMileStoneName(),
                         m.getStartDate(),
@@ -55,5 +58,13 @@ public class MileStoneService {
         milestones.setEndDate(milestonesModifyRequest.getEndDate());
 
         milestonesRepository.save(milestones);
+    }
+
+    public void deleteMilestone(Long milestoneId){
+
+        if(milestonesRepository.existsById(milestoneId)){
+            milestonesRepository.deleteById(milestoneId);
+        }
+
     }
 }

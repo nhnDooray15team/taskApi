@@ -1,4 +1,4 @@
-package com.nhnacademy.taskApi.repository;
+package com.nhnacademy.taskApi.repository.tag;
 
 
 import com.nhnacademy.taskApi.domain.QTag;
@@ -6,6 +6,7 @@ import com.nhnacademy.taskApi.domain.QTaskTag;
 import com.nhnacademy.taskApi.domain.Tag;
 import com.nhnacademy.taskApi.dto.tag.response.QTagDto;
 import com.nhnacademy.taskApi.dto.tag.response.TagDto;
+import com.nhnacademy.taskApi.repository.tag.TagRepositoryCustom;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 

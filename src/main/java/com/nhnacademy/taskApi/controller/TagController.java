@@ -3,7 +3,7 @@ package com.nhnacademy.taskApi.controller;
 import com.nhnacademy.taskApi.dto.tag.request.TagRequest;
 import com.nhnacademy.taskApi.dto.tag.response.TagDto;
 import com.nhnacademy.taskApi.dto.tag.response.TagResponseDto;
-import com.nhnacademy.taskApi.service.TagService;
+import com.nhnacademy.taskApi.service.tag.TagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -73,7 +73,6 @@ public class TagController {
     }
 
     @DeleteMapping("/tags/{tagId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteTag(@PathVariable("projectId") Long projectId,
                           @PathVariable("tagId") Long tagId){
         tagService.removeTag(tagId);

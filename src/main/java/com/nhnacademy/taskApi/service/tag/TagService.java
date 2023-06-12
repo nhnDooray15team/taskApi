@@ -1,11 +1,11 @@
-package com.nhnacademy.taskApi.service;
+package com.nhnacademy.taskApi.service.tag;
 
 import com.nhnacademy.taskApi.domain.Project;
 import com.nhnacademy.taskApi.domain.Tag;
 import com.nhnacademy.taskApi.dto.tag.request.TagRequest;
 import com.nhnacademy.taskApi.dto.tag.response.TagDto;
 import com.nhnacademy.taskApi.dto.tag.response.TagResponseDto;
-import com.nhnacademy.taskApi.repository.TagRepository;
+import com.nhnacademy.taskApi.repository.tag.TagRepository;
 import com.nhnacademy.taskApi.repository.project.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

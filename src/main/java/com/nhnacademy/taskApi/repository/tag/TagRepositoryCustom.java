@@ -1,4 +1,4 @@
-package com.nhnacademy.taskApi.repository;
+package com.nhnacademy.taskApi.repository.tag;
 
 import com.nhnacademy.taskApi.domain.Tag;
 import com.nhnacademy.taskApi.dto.tag.response.TagDto;

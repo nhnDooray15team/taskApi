@@ -1,11 +1,11 @@
-package com.nhnacademy.taskApi.service;
+package com.nhnacademy.taskApi.service.comment;
 
 import com.nhnacademy.taskApi.domain.Comment;
 import com.nhnacademy.taskApi.domain.Task;
 import com.nhnacademy.taskApi.dto.comment.request.CommentRequest;
 import com.nhnacademy.taskApi.dto.comment.response.CommentDto;
-import com.nhnacademy.taskApi.repository.CommentRepository;
-import com.nhnacademy.taskApi.repository.TaskRepository;
+import com.nhnacademy.taskApi.repository.comment.CommentRepository;
+import com.nhnacademy.taskApi.repository.task.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

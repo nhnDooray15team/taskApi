@@ -1,30 +1,35 @@
 ### 해당 프로젝트내에 모든 마일스톤을 가지고옴
-### /projects/{project_id}/milestones
-GET http://localhost:8080/projects/2/milestones
+### /projects/{projectId}/milestones
+GET http://localhost:8080/projects/2/milestones HTTP/1.1
 
 
 ### 해당 프로젝트내에 마일스톤을 등록함
-### /projects/{project_id}/milestone
-POST http://localhost:8080/projects/2/milestone
+### /projects/{projectId}/milestone
+POST http://localhost:8080/projects/2/milestone HTTP/1.1
 Host: localhost:8080
 Content-Type: application/json
 
 {
     "mileStoneId" : null,
-	"mileStoneName" : "chanyoungtest",
+	"mileStoneName" : "마일스톤 테스트",
 	"startDate" : null,
 	"endDate" : null
 }
 
 ### 해당 프로젝트내에 마일스톤을 수정함
-### /projects/{project_id}/milestones/{milestones_id}
-PUT http://localhost:8080/projects/2/milestones/8
+### /projects/{projectId}/milestones/{milestonesId}
+PATCH http://localhost:8080/projects/2/milestones/11 HTTP/1.1
 Host: localhost:8080
 Content-Type: application/json
 
 {
-  "mileStoneName" : "test-chanyoung",
-  "startDate" : "2023-06-07",
-  "endDate" : "2023-06-07"
+  "mileStoneName" : "마일스톤 테스트수정",
+  "startDate" : "2023-06-11",
+  "endDate" : "2023-06-11"
 }
+
+### 해당 프로젝트내에 있는 마일스톤을 삭제함
+### /projects/{projectId}/mildstones/{milestonesId}
+DELETE http://localhost:8080/projects/2/milestones/11 HTTP/1.1
+
 
