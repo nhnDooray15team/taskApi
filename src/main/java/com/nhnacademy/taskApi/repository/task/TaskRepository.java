@@ -1,7 +1,6 @@
 package com.nhnacademy.taskApi.repository.task;
 
 import com.nhnacademy.taskApi.domain.Task;
-import com.nhnacademy.taskApi.repository.tag.TagRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -13,5 +12,8 @@ public interface TaskRepository extends JpaRepository<Task, Long> , TaskReposito
 
     Optional<List<Task>> findAllByProject_ProjectId(Long projectID);
 
-    void deleteByProject_ProjectIdAndTaskId(Long projectId, Long taskId);
+//    void deleteByProject_ProjectIdAndTaskId(Long projectId, Long taskId);
+
+    void deleteByTaskId(Long taskId);
+
 }

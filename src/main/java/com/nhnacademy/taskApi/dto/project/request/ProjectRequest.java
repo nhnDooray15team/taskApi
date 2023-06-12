@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 @Getter
 @NoArgsConstructor
 public class ProjectRequest {
-    @NotBlank
+    @NotBlank(message = "프로젝트 이름을 입력해주세요")
     private String projectName;
 
     @Nullable

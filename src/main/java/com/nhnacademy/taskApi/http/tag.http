@@ -12,11 +12,11 @@ Content-Type: application/json
 
 ### 태그 등록
 ### /projects/{project_id}/tags
-POST http://localhost:8080/projects/2/tags HTTP/1.1
+POST http://localhost:8080/projects/3/tags HTTP/1.1
 Content-Type: application/json
 
 {
-  "tagName": "testTag"
+  "tagName": "testtagtesttagtesttagtesttagtesttagtesttagtesttagtesttagtesttagtesttagtesttag"
 }
 
 ### 태그 수정

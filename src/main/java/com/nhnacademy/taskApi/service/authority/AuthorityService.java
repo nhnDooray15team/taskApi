@@ -29,8 +29,9 @@ public class AuthorityService {
     }
 
     public void insertAuthority(Long projectId, AuthorityRequest authorityRequest){
-        Project project = projectRepository.findById(projectId)
+        final Project project = projectRepository.findById(projectId)
                 .orElseThrow(() -> new NotFoundException("해당 프로젝트가 존재하지 않습니다."));
+
         authorityRepository.save(new Authority(new Authority.Pk(authorityRequest.getUserId(), projectId), project, Authority.Role.MEMBER));
     }
 

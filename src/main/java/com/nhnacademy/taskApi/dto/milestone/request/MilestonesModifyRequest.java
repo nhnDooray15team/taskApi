@@ -14,8 +14,8 @@ import java.util.Date;
 @Setter
 public class MilestonesModifyRequest {
 
-    @NotBlank(message = "이름을 작성해주세요")
-    @Size(max = 45)
+    @NotBlank(message = "마일스톤 이름을 작성해주세요")
+    @Size(max = 45, message = "마일스톤 이름은 45자 내외여야 합니다.")
     private String mileStoneName;
 
     @Nullable
