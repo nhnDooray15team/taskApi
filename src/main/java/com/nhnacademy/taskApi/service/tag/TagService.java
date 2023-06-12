@@ -5,6 +5,8 @@ import com.nhnacademy.taskApi.domain.Tag;
 import com.nhnacademy.taskApi.dto.tag.request.TagRequest;
 import com.nhnacademy.taskApi.dto.tag.response.TagDto;
 import com.nhnacademy.taskApi.dto.tag.response.TagResponseDto;
+import com.nhnacademy.taskApi.exception.DuplicatedException;
+import com.nhnacademy.taskApi.exception.InvalidRequestException;
 import com.nhnacademy.taskApi.exception.NotFoundException;
 import com.nhnacademy.taskApi.repository.tag.TagRepository;
 import com.nhnacademy.taskApi.repository.project.ProjectRepository;
@@ -28,9 +30,9 @@ public class TagService {
     private final ProjectRepository projectRepository;
 
     public void insertTag(Long projectId, TagRequest tagRequest){
-//        if(tagRepository.existTag(projectId, tagRequest.getTagName())){
-//            throw new NotFoundException("이미 존재하는 태그이름입니다. 변경해주세요");
-//        }
+        if(tagRepository.existsByProjectIdAndTagName(projectId, tagRequest.getTagName())){
+            throw new DuplicatedException("이미 존재하는 태그이름입니다. 변경해주세요");
+        }
         Project project = projectRepository.findById(projectId)
                 .orElseThrow(()-> new NotFoundException("프로젝트를 찾을수 없습니다."));
         tagRepository.save(new Tag(tagRequest.getTagName(), project));
@@ -46,15 +48,15 @@ public class TagService {
     }
 
     public void updateTag(Long projectId,Long tagId, TagRequest tagRequest){
-//        if(tagRepository.existTag(projectId, tagRequest.getTagName())){
-//            throw new NotFoundException("이미 존재하는 태그이름입니다. 변경해주세요");
-//        }
-        Tag tag = tagRepository.findById(tagId).orElseThrow(()->new NotFoundException("태그 데이터를 찾을수 없습니다."));
+        if(tagRepository.existsByProjectIdAndTagName(projectId, tagRequest.getTagName())){
+            throw new NotFoundException("이미 존재하는 태그이름입니다. 변경해주세요");
+        }
+        final Tag tag = tagRepository.findById(tagId).orElseThrow(()->new NotFoundException("태그 데이터를 찾을수 없습니다."));
         tag.setTagName(tagRequest.getTagName());
     }
     public void removeTag(Long tagId){
         if(!tagRepository.existsById(tagId)){
-            throw new NotFoundException("태그 데이터를 찾을수 없습니다.");
+            throw new InvalidRequestException("태그 데이터를 찾을수 없습니다.");
         }
         tagRepository.deleteById(tagId);
     }

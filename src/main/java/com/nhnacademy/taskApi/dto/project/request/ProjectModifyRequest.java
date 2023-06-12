@@ -8,7 +8,7 @@ import javax.validation.constraints.*;
 @Getter
 public class ProjectModifyRequest {
     @NotBlank(message = "프로젝트 이름을 입력해주세요")
-    @Size(max = 45)
+    @Size(max = 45, message = "프로젝트 이름은 45자 내외여야 합니다.")
     private String projectName;
 
     @Nullable

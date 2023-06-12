@@ -26,11 +26,8 @@ public class AuthorityController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void registerAuthority(@PathVariable("projectId") Long projectId,
-                                  @RequestBody @Valid AuthorityRequest authorityRequest,
-                                  BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            throw new ValidationException();
-        }
+                                  @RequestBody @Valid AuthorityRequest authorityRequest){
+
         authorityService.insertAuthority(projectId, authorityRequest);
     }
 

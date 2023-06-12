@@ -24,11 +24,8 @@ public class ProjectController {
     @PostMapping("/user/{userId}")
     @ResponseStatus(HttpStatus.CREATED)
     public void insertProject(@RequestBody @Valid ProjectRequest projectCreateRequest,
-                              BindingResult bindingResult,
                               @PathVariable("userId") String userId){
-        if(bindingResult.hasErrors()){
-            throw new ValidationException();
-        }
+
         projectService.createProject(projectCreateRequest, userId);
 
     }
@@ -36,11 +33,8 @@ public class ProjectController {
     @PatchMapping("/{projectId}/status")
     @ResponseStatus(HttpStatus.OK)
     public void modifyStatus(@PathVariable("projectId") Long projectId ,
-                             @RequestBody @Valid ProjectModifyRequest projectModifyRequest,
-                             BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            throw new ValidationException();
-        }
+                             @RequestBody @Valid ProjectModifyRequest projectModifyRequest){
+
         projectService.modifyProject(projectId, projectModifyRequest);
     }
 

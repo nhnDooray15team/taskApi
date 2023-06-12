@@ -6,6 +6,7 @@ import com.nhnacademy.taskApi.dto.tag.response.TagResponseDto;
 import com.nhnacademy.taskApi.service.tag.TagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/projects/{projectId}")
 @RequiredArgsConstructor
+@Transactional
 public class TagController {
     private final TagService tagService;
     /**
@@ -26,6 +28,8 @@ public class TagController {
      * @param projectId 해당 프로젝트 아이디
      * @return 프로젝트 별 태그들을 가져옴.
      */
+
+    @Transactional(readOnly = true)
     @GetMapping("/tags")
     public List<TagResponseDto> getAllTags(@PathVariable("projectId") Long projectId){
         return tagService.getTagsByProject(projectId);
@@ -37,6 +41,7 @@ public class TagController {
      * @param taskId 해당 태스크 아이디. 해당 업무는 프로젝트 내에 존재하므로 taskId만 사용하면 됨.
      * @return 업무 별 tag들을 가져옴.
      */
+    @Transactional(readOnly = true)
     @GetMapping("/tasks/{taskId}/tags")
     public List<TagDto> getTagsByTaskId(@PathVariable("projectId") Long projectId,
                                         @PathVariable("taskId") Long taskId){
@@ -53,22 +58,16 @@ public class TagController {
     @PostMapping("/tags")
     @ResponseStatus(HttpStatus.CREATED)
     public void registerTag(@PathVariable("projectId") Long projectId,
-                            @RequestBody @Valid TagRequest tagRequest,
-                            BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            throw new ValidationException(); //exception 처리 추가하기
-        }
+                            @RequestBody @Valid TagRequest tagRequest){
+         
         tagService.insertTag(projectId, tagRequest);
     }
     @PatchMapping("/tags/{tagId}")
     @ResponseStatus(HttpStatus.OK)
     public void updateTag(@PathVariable("projectId") Long projectId,
                           @PathVariable("tagId") Long tagId,
-                          @RequestBody @Valid TagRequest tagRequest,
-                          BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            throw new ValidationException(); //exception 처리 추가하기
-        }
+                          @RequestBody @Valid TagRequest tagRequest){
+         
         tagService.updateTag(projectId,tagId,tagRequest);
     }
 

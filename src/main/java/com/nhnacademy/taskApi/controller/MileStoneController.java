@@ -7,11 +7,8 @@ import com.nhnacademy.taskApi.dto.milestone.response.MilestonesResponse;
 import com.nhnacademy.taskApi.service.milestone.MileStoneService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
-import javax.validation.ValidationException;
 import java.util.List;
 
 
@@ -32,10 +29,8 @@ public class MileStoneController {
     @PostMapping("/{projectId}/milestone")
     @ResponseStatus(HttpStatus.CREATED)
     public void createMilestone(@PathVariable("projectId") Long projectId,
-                                @RequestBody @Valid MilestonesRequest milestonesRequest, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            throw new ValidationException();
-        }
+                                @RequestBody @Valid MilestonesRequest milestonesRequest){
+
         mileStoneService.createMilestone(projectId, milestonesRequest);
 
     }
@@ -44,12 +39,9 @@ public class MileStoneController {
     @ResponseStatus(HttpStatus.OK)
     public void modifyMilestone(@PathVariable("projectId") Long projectId,
                                 @PathVariable("milestonesId") Long milestoneId,
-                                @RequestBody @Valid MilestonesModifyRequest milestonesModifyRequest,
-                                BindingResult bindingResult){
+                                @RequestBody @Valid MilestonesModifyRequest milestonesModifyRequest){
 
-        if(bindingResult.hasErrors()){
-            throw new ValidationException();
-        }
+
 
         mileStoneService.modifyMilestone(projectId,milestoneId,milestonesModifyRequest);
 
