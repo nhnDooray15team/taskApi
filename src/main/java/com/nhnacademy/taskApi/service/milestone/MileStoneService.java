@@ -5,12 +5,12 @@ import com.nhnacademy.taskApi.domain.Project;
 import com.nhnacademy.taskApi.dto.milestone.request.MilestonesModifyRequest;
 import com.nhnacademy.taskApi.dto.milestone.request.MilestonesRequest;
 import com.nhnacademy.taskApi.dto.milestone.response.MilestonesResponse;
-import com.nhnacademy.taskApi.exception.milestone.MilestoneNotFoundIdException;
-import com.nhnacademy.taskApi.exception.project.ProjectNotFountIdException;
+import com.nhnacademy.taskApi.exception.NotFoundException;
 import com.nhnacademy.taskApi.repository.milestone.MilestonesRepository;
 import com.nhnacademy.taskApi.repository.project.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,12 +18,15 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class MileStoneService {
 
     private final MilestonesRepository milestonesRepository;
 
     private final ProjectRepository projectRepository;
 
+
+    @Transactional(readOnly = true)
     public List<MilestonesResponse> getMileStones(Long projectId) {
 
         return milestonesRepository.findAllByProject_ProjectId(projectId)
@@ -40,7 +43,9 @@ public class MileStoneService {
 
 
     public void createMilestone(Long projectId, MilestonesRequest milestonesRequest) {
-        Project project = projectRepository.findById(projectId).get();
+        Project project = projectRepository.findById(projectId).orElseThrow(
+                () -> new NotFoundException("만든 프로젝트가 존재하지않습니다.")
+        );
 
         milestonesRepository.save(new Milestones(project, milestonesRequest.getMileStoneName(),
                 milestonesRequest.getStartDate(), milestonesRequest.getEndDate()));
@@ -49,9 +54,13 @@ public class MileStoneService {
 
 
     public void modifyMilestone(Long projectId, Long milestoneId, MilestonesModifyRequest milestonesModifyRequest) {
-        Project project = projectRepository.findById(projectId).get();
+        Project project = projectRepository.findById(projectId).orElseThrow(
+                () -> new NotFoundException("프로젝트가 존재하지않습니다.")
+        );
 
-        Milestones milestones = milestonesRepository.findById(milestoneId).get();
+        Milestones milestones = milestonesRepository.findById(milestoneId).orElseThrow(
+                () -> new NotFoundException("마일스톤이 존재하지않습니다.")
+        );
 
         milestones.setMileStoneName(milestonesModifyRequest.getMileStoneName());
         milestones.setStartDate(milestonesModifyRequest.getStartDate());
@@ -62,9 +71,10 @@ public class MileStoneService {
 
     public void deleteMilestone(Long milestoneId){
 
-        if(milestonesRepository.existsById(milestoneId)){
-            milestonesRepository.deleteById(milestoneId);
+        if(!milestonesRepository.existsById(milestoneId)){
+            throw new NotFoundException("마일스톤이 존재하지 않습니다.");
         }
 
+        milestonesRepository.deleteById(milestoneId);
     }
 }

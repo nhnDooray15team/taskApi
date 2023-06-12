@@ -12,7 +12,6 @@ public class ProjectModifyRequest {
     private String projectName;
 
     @Nullable
-    @Size(max = 250)
     private String projectDescription;
     @NotBlank(message = "프로젝트의 상태를 설정해주세요")
     private String statusName;

@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Setter
 public class MilestonesRequest {
 
-    private Long projectId;
+    private Long milestoneId;
     @NotBlank(message = "마일스톤이름을 입력해주세요")
     @Size(max = 45)
     private String mileStoneName;

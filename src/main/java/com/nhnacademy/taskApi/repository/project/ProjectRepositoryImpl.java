@@ -4,7 +4,6 @@ import com.nhnacademy.taskApi.domain.Project;
 import com.nhnacademy.taskApi.domain.QAuthority;
 import com.nhnacademy.taskApi.domain.QProject;
 import com.nhnacademy.taskApi.domain.QProjectStatus;
-import com.nhnacademy.taskApi.dto.authority.response.QAuthorityDto;
 import com.nhnacademy.taskApi.dto.project.response.ProjectGetResponse;
 import com.nhnacademy.taskApi.dto.project.response.QProjectGetResponse;
 import com.querydsl.jpa.impl.JPAQueryFactory;

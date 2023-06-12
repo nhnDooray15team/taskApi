@@ -6,7 +6,7 @@ import com.nhnacademy.taskApi.domain.ProjectStatus;
 import com.nhnacademy.taskApi.dto.project.request.ProjectModifyRequest;
 import com.nhnacademy.taskApi.dto.project.request.ProjectRequest;
 import com.nhnacademy.taskApi.dto.project.response.ProjectGetResponse;
-import com.nhnacademy.taskApi.exception.project.ProjectNotFountIdException;
+import com.nhnacademy.taskApi.exception.NotFoundException;
 import com.nhnacademy.taskApi.repository.projectstatus.ProjectStatusRepository;
 import com.nhnacademy.taskApi.repository.authority.AuthorityRepository;
 import com.nhnacademy.taskApi.repository.project.ProjectRepository;
@@ -26,7 +26,7 @@ public class ProjectService {
 
     public void createProject(ProjectRequest request, String userId) {
         if(!projectRepository.existsProjectByUserId(userId, request.getProjectName())){
-            throw new IllegalArgumentException("이미 존재하는 프로젝트 이름입니다.");
+            throw new NotFoundException("이미 존재하는 프로젝트 이름입니다.");
         }
         ProjectStatus projectStatus = projectStatusRepository.findByStatusName(ProjectStatus.StatusName.ACTIVATED);
         Project project = projectRepository.save(new Project(request.getProjectName(),request.getProjectDescription(),projectStatus));
@@ -35,7 +35,7 @@ public class ProjectService {
 
     public void modifyProject(Long projectId, ProjectModifyRequest projectModifyRequest) {
         Project project = projectRepository.findById(projectId).orElseThrow(
-                () -> new ProjectNotFountIdException("프로젝트 아이디를 찾을수 없습니다.")
+                () -> new NotFoundException("프로젝트 아이디를 찾을수 없습니다.")
         );
         ProjectStatus projectStatus = projectStatusRepository.findByStatusName(ProjectStatus.StatusName.valueOf(projectModifyRequest.getStatusName()));
         project.setProjectName(projectModifyRequest.getProjectName());

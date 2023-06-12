@@ -1,0 +1,3 @@
+### 해당 Task 조회와 동시에 tag들과 comment 같이 조회
+### /projects/{projectId}/tasks/{taskId}
+GET http://localhost:8080/projects/1/tasks/1 HTTP/1.1
