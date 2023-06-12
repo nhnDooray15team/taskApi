@@ -4,6 +4,7 @@ import com.nhnacademy.taskApi.domain.Project;
 import com.nhnacademy.taskApi.domain.QAuthority;
 import com.nhnacademy.taskApi.domain.QProject;
 import com.nhnacademy.taskApi.domain.QProjectStatus;
+import com.nhnacademy.taskApi.dto.authority.response.QAuthorityDto;
 import com.nhnacademy.taskApi.dto.project.response.ProjectGetResponse;
 import com.nhnacademy.taskApi.dto.project.response.QProjectGetResponse;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -11,7 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
-
 import java.util.List;
 
 public class ProjectRepositoryImpl extends QuerydslRepositorySupport implements ProjectRepositoryCustom {
@@ -39,8 +39,8 @@ public class ProjectRepositoryImpl extends QuerydslRepositorySupport implements 
                 .where(authority.pk.userId.eq(id))
                 .select(new QProjectGetResponse(project.projectId,
                         project.projectName,
-                        authority.role.stringValue(),
-                        project.projectStatus.statusName.stringValue()))
+                        authority.role,
+                        project.projectStatus.statusName))
                 .limit(pageable.getPageSize())
                 .offset(pageable.getOffset())
                 .fetch();

@@ -38,6 +38,7 @@ public class MileStoneController {
         }
         mileStoneService.createMilestone(projectId, milestonesRequest);
 
+//>>>>>>> dev-version-0.2
     }
 
     @PatchMapping("/{projectId}/milestones/{milestonesId}")

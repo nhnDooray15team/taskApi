@@ -18,18 +18,13 @@ public class CommentController {
     private final CommentService commentService;
 
     @GetMapping("/comments")
-    public List<CommentDto> getComments(@PathVariable("projectId") Long projectId,
-                                        @PathVariable("taskId") Long taskId){
+    public List<CommentDto> getComments(@PathVariable("projectId") Long projectId, @PathVariable("taskId") Long taskId){
         return commentService.getCommentList(taskId);
     }
 
     @PostMapping("/user/{userId}/comments")
     @ResponseStatus(HttpStatus.CREATED)
-    public void registerComment(@PathVariable("projectId") Long projectId,
-                                @PathVariable("taskId") Long taskId,
-                                @PathVariable("userId") String userId,
-                                @RequestBody @Valid CommentRequest commentRequest,
-                                BindingResult bindingResult){
+    public void registerComment(@PathVariable("projectId") Long projectId, @PathVariable("taskId") Long taskId, @PathVariable("userId") String userId,@RequestBody @Valid CommentRequest commentRequest, BindingResult bindingResult){
         commentService.insertComment(taskId, userId, commentRequest);
     }
 
@@ -43,6 +38,7 @@ public class CommentController {
     }
 
     @DeleteMapping("/comments/{commentsId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeComment(@PathVariable("projectId") Long projectId,
                               @PathVariable("taskId") Long taskId,
                               @PathVariable("commentsId") Long commentsId){
