@@ -8,10 +8,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
-@Setter
 public class MilestonesModifyRequest {
 
     @NotBlank(message = "마일스톤 이름을 작성해주세요")
@@ -19,8 +19,8 @@ public class MilestonesModifyRequest {
     private String mileStoneName;
 
     @Nullable
-    private LocalDate startDate;
+    private LocalDateTime startDate;
 
     @Nullable
-    private LocalDate endDate;
+    private LocalDateTime endDate;
 }

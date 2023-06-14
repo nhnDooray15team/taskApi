@@ -5,18 +5,21 @@ import com.nhnacademy.taskApi.domain.QAuthority;
 import com.nhnacademy.taskApi.domain.QTag;
 import com.nhnacademy.taskApi.dto.authority.response.AuthorityDto;
 import com.nhnacademy.taskApi.dto.authority.response.QAuthorityDto;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import java.util.List;
 
 public class AuthorityRepositoryImpl extends QuerydslRepositorySupport implements AuthorityRepositoryCustom {
 
-    private final JPAQueryFactory jpaQueryFactory;
+    private  JPAQueryFactory jpaQueryFactory;
     public AuthorityRepositoryImpl(JPAQueryFactory jpaQueryFactory){
         super(Authority.class);
         this.jpaQueryFactory = jpaQueryFactory;
     }
+
 
     @Override
     public List<AuthorityDto> getAuthorityDtoByProjectId(Long projectId) {

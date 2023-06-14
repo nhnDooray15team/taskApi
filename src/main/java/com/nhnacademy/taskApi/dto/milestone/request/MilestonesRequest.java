@@ -8,10 +8,10 @@ import org.springframework.lang.Nullable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Getter
-@Setter
 public class MilestonesRequest {
 
     private Long milestoneId;
@@ -20,7 +20,7 @@ public class MilestonesRequest {
     private String mileStoneName;
 
     @Nullable
-    private LocalDate startDate;
+    private LocalDateTime startDate;
     @Nullable
-    private LocalDate endDate;
+    private LocalDateTime endDate;
 }

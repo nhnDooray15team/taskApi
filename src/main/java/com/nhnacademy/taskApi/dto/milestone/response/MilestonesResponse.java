@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Getter
@@ -15,6 +16,6 @@ public class MilestonesResponse {
     private Long milestoneId;
     private Long projectId;
     private String mileStoneName;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 }

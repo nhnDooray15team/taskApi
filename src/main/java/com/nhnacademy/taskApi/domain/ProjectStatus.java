@@ -3,8 +3,6 @@ package com.nhnacademy.taskApi.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -28,5 +26,10 @@ public class ProjectStatus {
 
     public enum StatusName{
         ACTIVATED, DORMANT, ENDED;
+    }
+
+    public ProjectStatus(StatusName statusName) {
+        this.statusId = statusId;
+        this.statusName = statusName;
     }
 }

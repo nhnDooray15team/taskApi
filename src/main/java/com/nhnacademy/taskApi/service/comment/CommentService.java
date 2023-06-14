@@ -24,10 +24,7 @@ public class CommentService {
 
     @Transactional(readOnly = true)
     public List<CommentDto> getCommentList(Long taskId){
-//        if(!taskRepository.existsById(taskId)){
-//            throw new NotFoundException("해당하는 업무가 없습니다.");
-//        }
-        // get 같은 경우 없는 정보는 없는정보대로 표시되게 하는게 좋다해서 한번 확인해보시고 하시면 될거같습니다.
+
         return commentRepository.findAllByTask_TaskId(taskId);
     }
 
