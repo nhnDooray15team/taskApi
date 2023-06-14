@@ -52,7 +52,6 @@ public class TagController {
      *
      * @param projectId 해당 프로젝트 아이디
      * @param tagRequest tag 내용이 담겨서 넘어옴
-     * @param bindingResult tag내용을 적을때 빈칸으로 넘어오지 않도록, valid한 결과값
      * @throws ValidationException valid 결과 error발생 시
      */
     @PostMapping("/tags")
