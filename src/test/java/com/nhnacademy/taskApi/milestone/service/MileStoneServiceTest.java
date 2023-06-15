@@ -64,11 +64,11 @@ class MileStoneServiceTest {
     void createMilestone() {
         // Given
         Long projectId = 1L;
-        MilestonesRequest milestonesRequest = new MilestonesRequest();
+        MilestonesRequest milestonesRequest = new MilestonesRequest("마일스톤테스트",LocalDateTime.now(),LocalDateTime.now());
 
-        ReflectionTestUtils.setField(milestonesRequest,"mileStoneName", "마일스톤테스트");
-        ReflectionTestUtils.setField(milestonesRequest,"startDate", LocalDateTime.now());
-        ReflectionTestUtils.setField(milestonesRequest,"endDate", LocalDateTime.now());
+//        ReflectionTestUtils.setField(milestonesRequest,"mileStoneName", "마일스톤테스트");
+//        ReflectionTestUtils.setField(milestonesRequest,"startDate", LocalDateTime.now());
+//        ReflectionTestUtils.setField(milestonesRequest,"endDate", LocalDateTime.now());
 
         Project project = new Project();
         Mockito.when(projectRepository.existsById(projectId))
@@ -85,7 +85,7 @@ class MileStoneServiceTest {
 
         Milestones savedMilestone = captor.getValue();
 
-        assertEquals(milestonesRequest.getMilestoneId(),savedMilestone.getMileStoneId() );
+//        assertEquals(milestonesRequest.getMilestoneId(),savedMilestone.getMileStoneId() );
         assertEquals(milestonesRequest.getMileStoneName(),savedMilestone.getMileStoneName() );
         assertEquals(milestonesRequest.getStartDate(),savedMilestone.getStartDate() );
         assertEquals(milestonesRequest.getEndDate(),savedMilestone.getEndDate() );
@@ -102,11 +102,11 @@ class MileStoneServiceTest {
     void createMilestoneException() {
 
         Long projectId = 1L;
-        MilestonesRequest milestonesRequest = new MilestonesRequest();
-        ReflectionTestUtils.setField(milestonesRequest,"milestoneId", 1L);
-        ReflectionTestUtils.setField(milestonesRequest,"mileStoneName", "마일스톤테스트");
-        ReflectionTestUtils.setField(milestonesRequest,"startDate", LocalDateTime.now());
-        ReflectionTestUtils.setField(milestonesRequest,"endDate", LocalDateTime.now());
+        MilestonesRequest milestonesRequest = new MilestonesRequest("마일스톤테스트",LocalDateTime.now(),LocalDateTime.now());
+//        ReflectionTestUtils.setField(milestonesRequest,"milestoneId", 1L);
+//        ReflectionTestUtils.setField(milestonesRequest,"mileStoneName", "마일스톤테스트");
+//        ReflectionTestUtils.setField(milestonesRequest,"startDate", LocalDateTime.now());
+//        ReflectionTestUtils.setField(milestonesRequest,"endDate", LocalDateTime.now());
 
         Mockito.when(projectRepository.existsById(projectId))
                 .thenReturn(true);
@@ -124,11 +124,11 @@ class MileStoneServiceTest {
     void createMilestoneException2() {
 
         Long projectId = 1L;
-        MilestonesRequest milestonesRequest = new MilestonesRequest();
-        ReflectionTestUtils.setField(milestonesRequest,"milestoneId", 1L);
-        ReflectionTestUtils.setField(milestonesRequest,"mileStoneName", "마일스톤테스트");
-        ReflectionTestUtils.setField(milestonesRequest,"startDate", LocalDateTime.now());
-        ReflectionTestUtils.setField(milestonesRequest,"endDate", LocalDateTime.now());
+        MilestonesRequest milestonesRequest = new MilestonesRequest("마일스톤테스트",LocalDateTime.now(),LocalDateTime.now().plusDays(7));
+//        ReflectionTestUtils.setField(milestonesRequest,"milestoneId", 1L);
+//        ReflectionTestUtils.setField(milestonesRequest,"mileStoneName", "마일스톤테스트");
+//        ReflectionTestUtils.setField(milestonesRequest,"startDate", LocalDateTime.now());
+//        ReflectionTestUtils.setField(milestonesRequest,"endDate", LocalDateTime.now());
 
         assertThrows(NotFoundException.class, () -> mileStoneService.createMilestone(projectId, milestonesRequest));
 
@@ -140,11 +140,11 @@ class MileStoneServiceTest {
     void modifyMilestone() {
         Long projectId = 1L;
         Long milestoneId = 2L;
-        MilestonesModifyRequest milestonesModifyRequest = new MilestonesModifyRequest();
+        MilestonesModifyRequest milestonesModifyRequest = new MilestonesModifyRequest("마일스톤테스트",LocalDateTime.now(),LocalDateTime.now().plusDays(10));
 
-        ReflectionTestUtils.setField(milestonesModifyRequest,"mileStoneName", "마일스톤테스트");
-        ReflectionTestUtils.setField(milestonesModifyRequest,"startDate", LocalDateTime.now());
-        ReflectionTestUtils.setField(milestonesModifyRequest,"endDate", LocalDateTime.now());
+//        ReflectionTestUtils.setField(milestonesModifyRequest,"mileStoneName", "마일스톤테스트");
+//        ReflectionTestUtils.setField(milestonesModifyRequest,"startDate", LocalDateTime.now());
+//        ReflectionTestUtils.setField(milestonesModifyRequest,"endDate", LocalDateTime.now());
 
         Project project = new Project();
         Milestones milestones = new Milestones();

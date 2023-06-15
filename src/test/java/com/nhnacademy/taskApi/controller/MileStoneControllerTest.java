@@ -40,7 +40,7 @@ class MileStoneControllerTest {
 
     @Test
     void getAllMilestones() throws Exception {
-        final MilestonesResponse request = new MilestonesResponse(1L, 1L, "testName", LocalDate.now(), LocalDate.now());
+        final MilestonesResponse request = new MilestonesResponse(1L, 1L, "testName", LocalDateTime.now(), LocalDateTime.now());
         List<MilestonesResponse> list = List.of(request);
 
         given(mileStoneController.getAllMilestones(1L)).willReturn(list);
@@ -54,7 +54,7 @@ class MileStoneControllerTest {
 
     @Test
     void createMilestone() throws Exception {
-        final MilestonesRequest request = new MilestonesRequest("testMilestone", LocalDate.now(), LocalDate.now());
+        final MilestonesRequest request = new MilestonesRequest("testMilestone", LocalDateTime.now(), LocalDateTime.now());
 
         mockMvc.perform(post("/projects/{projectId}/milestone", 1L)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -64,10 +64,10 @@ class MileStoneControllerTest {
 
     @Test
     void modifyMilestone() throws Exception {
-        final MilestonesModifyRequest request = new MilestonesModifyRequest();
-        request.setMileStoneName("test");
-        request.setStartDate(LocalDate.now());
-        request.setEndDate(LocalDate.now());
+        final MilestonesModifyRequest request = new MilestonesModifyRequest("test",LocalDateTime.now(),LocalDateTime.now());
+//        request.setMileStoneName("test");
+//        request.setStartDate(LocalDate.now());
+//        request.setEndDate(LocalDate.now());
 
         mockMvc.perform(patch("/projects/{projectId}/milestones/{milestonesId}", 1L, 1L)
                         .contentType(MediaType.APPLICATION_JSON)
