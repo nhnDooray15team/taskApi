@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -48,13 +49,13 @@ class CommentServiceTest {
 
         List<CommentDto> expectedCommentDtoList = new ArrayList<>();
 
-        Mockito.when(commentRepository.findAllByTask_TaskId(taskId)).thenReturn(expectedCommentDtoList);
+        when(commentRepository.findAllByTask_TaskId(taskId)).thenReturn(expectedCommentDtoList);
 
         List<CommentDto> result = commentService.getCommentList(taskId);
 
         assertEquals(expectedCommentDtoList, result);
-        Mockito.verify(commentRepository).findAllByTask_TaskId(taskId);
-        Mockito.verifyNoMoreInteractions(commentRepository);
+        verify(commentRepository).findAllByTask_TaskId(taskId);
+        verifyNoMoreInteractions(commentRepository);
 
     }
 
@@ -68,12 +69,12 @@ class CommentServiceTest {
 
         Task task = new Task();
 
-        Mockito.when(taskRepository.findById(taskId)).thenReturn(Optional.of(task));
+        when(taskRepository.findById(taskId)).thenReturn(Optional.of(task));
 
         commentService.insertComment(taskId, user, commentRequest);
 
         ArgumentCaptor<Comment> captor = ArgumentCaptor.forClass(Comment.class);
-        Mockito.verify(commentRepository, Mockito.times(1)).save(captor.capture());
+        verify(commentRepository, times(1)).save(captor.capture());
 
         Comment savedComment = captor.getValue();
 
@@ -81,11 +82,11 @@ class CommentServiceTest {
         assertEquals(user, savedComment.getWriterId());
 
 
-        Mockito.verify(taskRepository, Mockito.times(1)).findById(taskId);
-        Mockito.verifyNoMoreInteractions(taskRepository);
+        verify(taskRepository, times(1)).findById(taskId);
+        verifyNoMoreInteractions(taskRepository);
 
-        Mockito.verify(commentRepository, Mockito.times(1)).save(Mockito.any(Comment.class));
-        Mockito.verifyNoMoreInteractions(commentRepository);
+        verify(commentRepository, times(1)).save(any(Comment.class));
+        verifyNoMoreInteractions(commentRepository);
 
     }
 
@@ -102,7 +103,7 @@ class CommentServiceTest {
         ReflectionTestUtils.setField(comment, "content", commentRequest.getContent());
         ReflectionTestUtils.setField(comment, "registerDate", time);
 
-        Mockito.when(commentRepository.findById(commentId)).thenReturn(Optional.of(comment));
+        when(commentRepository.findById(commentId)).thenReturn(Optional.of(comment));
 
         commentService.updateComment(commentId,commentRequest);
 
@@ -118,13 +119,13 @@ class CommentServiceTest {
     void deleteComment() {
         Long commentId = 1L;
 
-        Mockito.when(commentRepository.existsById(commentId)).thenReturn(true);
+        when(commentRepository.existsById(commentId)).thenReturn(true);
 
         commentService.deleteComment(commentId);
 
-        Mockito.verify(commentRepository,Mockito.times(1) ).existsById(commentId);
-        Mockito.verify(commentRepository,Mockito.times(1) ).deleteById(commentId);
-        Mockito.verifyNoMoreInteractions(commentRepository);
+        verify(commentRepository, times(1) ).existsById(commentId);
+        verify(commentRepository, times(1) ).deleteById(commentId);
+        verifyNoMoreInteractions(commentRepository);
 
     }
 
@@ -133,11 +134,11 @@ class CommentServiceTest {
     void deleteCommentException() {
         Long commentId = 2L;
 
-        Mockito.when(commentRepository.existsById(commentId)).thenReturn(false);
+        when(commentRepository.existsById(commentId)).thenReturn(false);
 
         assertThrows(InvalidRequestException.class, () -> commentService.deleteComment(commentId ));
-        Mockito.verify(commentRepository,Mockito.times(1) ).existsById(commentId);
-        Mockito.verifyNoMoreInteractions(commentRepository);
+        verify(commentRepository, times(1) ).existsById(commentId);
+        verifyNoMoreInteractions(commentRepository);
 
 
 

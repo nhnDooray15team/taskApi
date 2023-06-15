@@ -26,7 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @WebMvcTest(AuthorityController.class)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @DisplayName("AuthorityControllerTest")
 class AuthorityControllerTest {
 

@@ -1,6 +1,6 @@
 ### 프로젝트 별 태그 목록조회
 ### /projects/{project_id}/tags
-GET http://localhost:8080/projects/2/tags HTTP/1.1
+GET http://localhost:8080/projects/1/tags HTTP/1.1
 Content-Type: application/json
 
 

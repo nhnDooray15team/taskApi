@@ -6,6 +6,7 @@ import com.nhnacademy.taskApi.dto.milestone.request.MilestonesModifyRequest;
 import com.nhnacademy.taskApi.dto.milestone.request.MilestonesRequest;
 import com.nhnacademy.taskApi.dto.milestone.response.MilestonesResponse;
 import com.nhnacademy.taskApi.exception.DuplicatedException;
+import com.nhnacademy.taskApi.exception.InvalidRequestException;
 import com.nhnacademy.taskApi.exception.NotFoundException;
 import com.nhnacademy.taskApi.repository.milestone.MilestonesRepository;
 import com.nhnacademy.taskApi.repository.project.ProjectRepository;
@@ -162,6 +163,30 @@ class MileStoneServiceTest {
     }
 
     @Test
+    @DisplayName("마일스톤 삭제")
     void deleteMilestone() {
+        Long milestoneId = 1L;
+
+        Mockito.when(milestonesRepository.existsById(milestoneId)).thenReturn(true);
+
+        mileStoneService.deleteMilestone(milestoneId);
+
+        Mockito.verify(milestonesRepository, Mockito.times(1)).existsById(milestoneId);
+        Mockito.verify(milestonesRepository, Mockito.times(1)).deleteById(milestoneId);
+        Mockito.verifyNoMoreInteractions(milestonesRepository);
+
+    }
+
+    @Test
+    @DisplayName("마일스톤 삭제 - 마일스톤이 존재하지않음")
+    void deleteMilestoneException() {
+        Long milestoneId = 1L;
+
+        Mockito.when(milestonesRepository.existsById(milestoneId)).thenReturn(false);
+
+        assertThrows(InvalidRequestException.class, () -> mileStoneService.deleteMilestone(milestoneId));
+        Mockito.verify(milestonesRepository, Mockito.times(1)).existsById(milestoneId);
+        Mockito.verifyNoMoreInteractions(milestonesRepository);
+
     }
 }
