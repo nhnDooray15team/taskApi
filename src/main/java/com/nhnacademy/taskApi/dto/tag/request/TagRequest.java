@@ -2,11 +2,13 @@ package com.nhnacademy.taskApi.dto.tag.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Getter
+@Setter
 @NoArgsConstructor
 public class TagRequest {
     @NotBlank(message = "태그 이름을 입력하세요")

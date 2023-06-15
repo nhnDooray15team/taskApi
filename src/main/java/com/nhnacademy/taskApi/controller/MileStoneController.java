@@ -22,7 +22,7 @@ public class MileStoneController {
 
 
     @GetMapping("/{projectId}/milestones")
-    public List<MilestonesResponse> getAllmilestones(@PathVariable("projectId") Long projectId){
+    public List<MilestonesResponse> getAllMilestones(@PathVariable("projectId") Long projectId){
         return mileStoneService.getMileStones(projectId);
     }
 

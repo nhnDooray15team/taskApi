@@ -5,6 +5,7 @@ import com.nhnacademy.taskApi.domain.Task;
 import com.nhnacademy.taskApi.dto.comment.response.CommentResponseDto;
 import com.nhnacademy.taskApi.dto.tag.response.TagDto;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class TaskTagCommentResponse {
 
     private Long taskId;
