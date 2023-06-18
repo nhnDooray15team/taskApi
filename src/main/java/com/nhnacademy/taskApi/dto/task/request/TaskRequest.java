@@ -9,7 +9,6 @@ import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Getter
-@Setter
 @AllArgsConstructor
 public class TaskRequest {
 
@@ -23,4 +22,5 @@ public class TaskRequest {
     private LocalDateTime endDate;
 
     private Long milestoneId;
+
 }

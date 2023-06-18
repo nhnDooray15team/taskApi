@@ -1,6 +1,7 @@
 package com.nhnacademy.taskApi.repository.authority;
 
 import com.nhnacademy.taskApi.dto.authority.response.AuthorityDto;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import java.util.List;
@@ -8,4 +9,7 @@ import java.util.List;
 public interface AuthorityRepositoryCustom {
     List<AuthorityDto> getAuthorityDtoByProjectId(Long projectId);
     boolean existsByProjectId(Long projectId);
+
+
+
 }

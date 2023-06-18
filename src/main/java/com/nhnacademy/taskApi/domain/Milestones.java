@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -29,18 +30,18 @@ public class Milestones {
 
     @Setter
     @Column(name = "start_date")
-    private LocalDate startDate;
+    private LocalDateTime startDate;
 
 
     @Setter
     @Column(name = "end_date")
-    private LocalDate endDate;
+    private LocalDateTime endDate;
 
     @OneToMany(mappedBy = "milestones")
     private List<Task> tasks;
 
 
-    public Milestones(Project project, String mileStoneName, LocalDate startDate, LocalDate endDate) {
+    public Milestones(Project project, String mileStoneName, LocalDateTime startDate, LocalDateTime endDate) {
 
         this.project = project;
         this.mileStoneName = mileStoneName;

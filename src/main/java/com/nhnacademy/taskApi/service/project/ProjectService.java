@@ -26,15 +26,16 @@ public class ProjectService {
     private final AuthorityRepository authorityRepository;
 
     public void createProject(ProjectRequest request, String userId) {
-        if(projectRepository.existsProjectByUserId(userId, request.getProjectName())){
+        if (projectRepository.existsProjectByUserId(userId, request.getProjectName())) {
             throw new DuplicatedException("이미 존재하는 프로젝트 이름입니다.");
         }
         final ProjectStatus projectStatus = projectStatusRepository.findByStatusName(ProjectStatus.StatusName.ACTIVATED);
-        final Project project = projectRepository.save(new Project(request.getProjectName(),request.getProjectDescription(),projectStatus));
-        authorityRepository.save(new Authority(new Authority.Pk(userId, project.getProjectId()),project, Authority.Role.ADMIN));
+        final Project project = projectRepository.save(new Project(request.getProjectName(), request.getProjectDescription(), projectStatus));
+        authorityRepository.save(new Authority(new Authority.Pk(userId, project.getProjectId()), project, Authority.Role.ADMIN));
     }
 
     public void modifyProject(Long projectId, ProjectModifyRequest projectModifyRequest) {
+
         final Project project = projectRepository.findById(projectId).orElseThrow(
                 () -> new NotFoundException("프로젝트 아이디를 찾을수 없습니다.")
         );
